@@ -1,0 +1,119 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+	<div th:fragment="copy">
+
+		<!-- 分页处理部份,开启一个新的查询时，请调用JS函数 resetPaging()重新初始化页信息,主页面需要有doQuery(newSql)来实现查询 -->
+		<div th:if="${pageInfo != null}">
+			<input type="hidden" id="pageNum" name="pageNum"
+				th:value="${pageInfo.pageNum}" /> <input type="hidden"
+				id="totalCount" name="totalCount" th:value="${pageInfo.totalCount}" />
+			<div id="pageDiv"
+				style="font-size: 15px; text-align: center; margin-top: 10px; font-family:"微软雅黑";" >
+				<span th:id="firstBtn" class="btn btn-default"
+					style="color: blue; cursor: pointer"
+					th:onclick="'javascript:firstPage();'">首页</span> <span
+					th:id="prevBtn" class="btn btn-default"
+					style="color: blue; cursor: pointer"
+					th:onclick="'javascript:prevPage();'">上一页</span> <span
+					th:id="nextBtn" class="btn btn-default"
+					style="color: blue; cursor: pointer"
+					th:onclick="'javascript:nextPage();'">下一页</span> <span
+					th:id="lastBtn" class="btn btn-default"
+					style="color: blue; cursor: pointer"
+					th:onclick="'javascript:lastPage();'">末页</span>
+				<!-- 第<input type="text" id="gotoPageNum" style="width:35px" th:value="${pageInfo.pageNum}" />页
+		<span class="btn btn-default" style="color:blue;cursor:pointer" th:onclick="'javascript:skip2Page($('#gotoPageNum').val());'">跳转</span>
+		 -->
+				共<span th:text="${pageInfo.totalCount}"></span>条，第<span
+					th:text="${pageInfo.pageNum}"></span>/<span
+					th:text="${pageInfo.pageCount}"></span>页 每页：<select
+					id="pageSize" name="pageSize"
+					class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+					onchange="gotoPage(1)">
+					<option th:selected== "${pageInfo.pageSize==10}">10</option>
+					<option th:selected== "${pageInfo.pageSize==20}">20</option>
+					<option th:selected== "${pageInfo.pageSize==50}">50</option>
+					<option th:selected== "${pageInfo.pageSize==100}">100</option>
+					<option th:selected== "${pageInfo.pageSize==200}">200</option>
+					<option th:selected== "${pageInfo.pageSize==500}">500</option>
+				</select>
+			</div>
+
+	<script th:inline="javascript">
+	var currentPageNum = [[${pageInfo.pageNum}]]; 
+	function resetPaging(){
+			$("#totalCount").val("-1");
+			$("#pageNum").val("1");
+	}
+	function firstPage(){ 
+		if(currentPageNum!=1)
+			gotoPage(1) ;
+	}
+	function nextPage(){
+		if([[${pageInfo.totalCount}]]==0) 
+			return;		
+		var pageSize=parseInt($("#pageSize").val());
+		var lastNum=[[${pageInfo.totalCount}]]/pageSize ;
+		if(currentPageNum<lastNum)
+			gotoPage(currentPageNum+1) ;
+	}
+	function prevPage(){ 
+		if(currentPageNum>1)
+			gotoPage(currentPageNum-1) ;
+	}
+	function lastPage(){
+		if([[${pageInfo.totalCount}]]==0)
+			return;		
+		var pageSize=parseInt($("#pageSize").val());
+		var lastNum=[[${pageInfo.totalCount}]]/pageSize;
+		if(currentPageNum<lastNum)
+			gotoPage(Math.ceil(lastNum));
+	}
+	function gotoPage(num){
+		$("#pageNum").val(num);
+		doQuery(false) ;
+	}
+
+	function skip2Page(num){
+		if([[${pageInfo.totalCount}]]==0) 
+			return;		
+		var pageSize=parseInt($("#pageSize").val());
+		var lastNum=[[${pageInfo.totalCount}]]/pageSize ;
+		lastNum=Math.ceil(lastNum);
+		var skip=parseInt(num); 
+		if(skip==currentPageNum)
+			return;
+		if(skip<=lastNum && skip>0)
+			gotoPage(skip);
+		else
+			alert("没有第"+num+"页!");
+	}
+	function changBtnMode(){
+		var pageSize=parseInt($("#pageSize").val());
+		var lastNum=[[${pageInfo.totalCount}]]/pageSize ;
+		lastNum=Math.ceil(lastNum);
+		if([[${pageInfo.totalCount}]]==0 || lastNum<=1){ 
+			$("#firstBtn").css("color","black");
+			$("#prevBtn").css("color","black");
+			$("#nextBtn").css("color","black"); 
+			$("#lastBtn").css("color","black");
+			return;
+		} 					
+		if(currentPageNum==1){
+			$("#firstBtn").css("color","black");
+			$("#prevBtn").css("color","black");
+		}
+		if(currentPageNum==lastNum){
+			$("#nextBtn").css("color","black"); 
+			$("#lastBtn").css("color","black");
+		}		
+	}
+	changBtnMode();
+    </script>
+		</div>
+	</div>
+</body>
+</html>

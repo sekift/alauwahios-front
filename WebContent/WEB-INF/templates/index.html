@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    
+    <head th:include="common_header :: head_frag(~{::title},~{::meta})"><!--  th:include="common" -->
+        <meta charset="utf-8">
+        <title>盘零零 - 百度云群组|百度网盘|群组链接|老司机你懂得|实时更新数据</title>
+        <meta name="description" content="盘零零 百度云群组 百度网盘 群组链接 老司机你懂得 实时更新数据">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body data-spy="scroll" data-target=".navbar-collapse" style="background:#f1f2f7">
+	<!-- getScheme()获取协议，getServerName()获取服务器名，getServerPort()服务器端口，getContextPath() APP根路径 -->
+	<a
+		th:href="${#httpServletRequest.getScheme() + '://' + #httpServletRequest.getServerName() + ':' + #request.getServerPort()  + #request.getContextPath() + '/'} "
+		id="contextPath"></a>
+
+	<div class="culmn">
+            <div th:include="header :: copy"></div>
+		<!--Featured Section-->
+            <section id="features" class="features" style="font-size: 13px">
+                <div class="container">
+				    <div class="row">
+                        <div class="main_features p-top-100">
+						<div class="f_item_text" style="text-align:center;">
+							<h2>盘零零 - 中国第零盘！</h2>
+						</div>
+						<section class="panel" style="">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div id="about-2" class="tab-pane active">
+                                                    <div class="adv-table">
+                                                        <div class="clearfix">
+                                                            <div style="color:red;">
+                                                                   <h3>1.网盘链接，更多请点击：<a style="color:blue" th:href="@{/wangpan}">网盘链接</a></h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="space15"></div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
+                                                            <thead>
+                                                            <tr>
+                                                                <th width="10%">链接</th>
+                                                                <th width="10%">帖子</th>
+                                                                <th width="30%">贴吧</th>
+                                                                <th width="20%">发表</th>
+                                                                <th width="20%">更新</th>
+                                                                <th width="10%">访问</th>
+                                                                <!-- <th width="6%">点赞数</th> -->
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="odd">
+                                                               <td style="text-align:center" valign="top" colspan="6" th:if="${#lists.isEmpty(wangpan)}" th:text="没有数据，请稍后刷新。"></td>
+                                                            </tr>
+														    <tr th:each="lm : ${wangpan}">
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=wangpan,id=${entry.id},name=${entry.replyName},gogogo=${entry.panLink})}" th:text="${entry.panShortLink}" target="_brank">pan00</a>
+														       </td>
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=wangpan,id=${entry.id},name=${entry.replyName},gogogo=${entry.replyLink})}" th:text="${#strings.length(entry.replyName) le 3?entry.replyName:#strings.substring(entry.replyName,0,2)+'..'}" target="_brank">pan00</a>
+														       </td>
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=wangpan_tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${#strings.length(entry.tiebaName) le 3?entry.tiebaName:#strings.substring(entry.tiebaName,0,2)+'..'}" target="_brank">pan00</a>
+														       </td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.postTime, 'MM-dd HH:mm')}"> </td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"> </td>
+                                                               <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td> -->
+													        </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                        
+                        <section class="panel" style="">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div id="about-2" class="tab-pane active">
+                                                    <div class="adv-table">
+                                                        <div class="clearfix">
+                                                            <div style="color:red;">
+                                                                    <h3>2.云盘链接，更多请点击：<a style="color:blue" th:href="@{/yun}">云盘链接</a></h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="space15"></div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
+                                                            <thead>
+                                                            <tr>
+                                                                <th width="20%">链接</th>
+                                                                <th width="30%">发表</th>
+                                                                <th width="30%">更新</th>
+                                                                <th width="20%">访问</th>
+                                                                <!-- <th width="10%">点赞数</th> -->
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="odd">
+                                                               <td style="text-align:center" valign="top" colspan="6" th:if="${#lists.isEmpty(yun)}" th:text="没有数据，请稍后刷新。"></td>
+                                                            </tr>
+														    <tr th:each="lm : ${yun}">
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=yun,id=${entry.id},name=${entry.panShortLink},gogogo=${entry.panLink})}" th:text="${entry.panShortLink}" target="_brank">pan00</a>
+														       </td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.createTime, 'MM-dd HH:mm')}"></td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
+                                                               <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td> -->
+													        </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                        
+                                <section class="panel" style="">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div id="about-2" class="tab-pane active">
+                                                    <div class="adv-table">
+                                                        <div class="clearfix">
+                                                            <div style="color:red;">
+                                                               <h3>3.贴吧链接，更多请点击：<a style="color:blue" th:href="@{/tieba}">贴吧链接</a></h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="space15"></div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
+                                                            <thead>
+                                                            <tr>
+                                                                <th width="30%">贴吧</th>
+                                                                <!-- <th width="20%">发表</th> -->
+                                                                <th width="30%">更新</th>
+                                                                <th width="20%">热门</th>
+                                                                <th width="20%">访问</th>
+                                                                <!-- <th width="10%">点赞数</th> -->
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="odd">
+                                                               <td valign="top" colspan="6" th:if="${#lists.isEmpty(tieba)}" th:text="没有数据，请稍后刷新。"></td>
+                                                            </tr>
+														    <tr th:each="lm : ${tieba}">
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${entry.tiebaName}" target="_brank">pan00</a>
+														       </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.createTime}"></td> -->
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
+                                                               <td th:each="entry : ${lm}" th:text="${entry.hot}"> </td>
+                                                               <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td> -->
+													        </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    
+                                    <section class="panel" style="">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div id="about-2" class="tab-pane active">
+                                                    <div class="adv-table">
+                                                        <div class="clearfix">
+                                                            <div style="color:red;">
+                                                               <h3>4.贴子链接，更多请点击：<a style="color:blue" th:href="@{/tiezi}">贴子链接</a></h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="space15"></div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
+                                                            <thead>
+                                                            <tr>
+                                                                <th width="30%">帖子</th>
+                                                                <th width="25%">贴吧</th>
+                                                                <th width="15%">发表</th>
+                                                                <th width="15%">更新</th>
+                                                                <!-- <th width="10%">热门</th> -->
+                                                                <th width="15%">访问</th>
+                                                                <!-- <th width="9%">点赞数</th> -->
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="odd">
+                                                               <td style="text-align:center" valign="top" colspan="6" th:if="${#lists.isEmpty(result)}" th:text="没有数据，请稍后刷新。"></td>
+                                                            </tr>
+														    <tr th:each="lm : ${result}">
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=tiezi,id=${entry.id},name=${entry.tieziName},gogogo=${entry.tieziLink})}" th:text="${entry.tieziName}" target="_brank">pan00</a>
+														       </td>
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${entry.tiebaName}" target="_brank">pan00</a>
+														       </td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.createTime, 'MM-dd HH:mm')}"></td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.hot}"> </td> -->
+                                                               <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td> -->
+													        </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                        </div>
+                    </div><!-- End off row -->
+                </div><!-- End off container -->
+            </section><!-- End off Featured Section-->
+
+            <!-- scroll up-->
+            <div class="scrollup">
+                <a href="#"><i class="fa fa-chevron-up"></i></a>
+            </div><!-- End off scroll up -->
+            
+            <div th:include="footer :: copy" ></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+    <head th:include="common_header :: head_frag(~{::title},~{::meta})"><!--  th:include="common" -->
+        <meta charset="utf-8">
+        <title>盘零零 - 百度云群组|百度网盘|群组链接|老司机你懂得|实时更新数据</title>
+        <meta name="description" content="盘零零 百度云群组 百度网盘 群组链接 老司机你懂得 实时更新数据">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <script type="text/javascript">
+	function countDown(secs, surl) {
+		var jumpTo = document.getElementById('jumpTo');
+		jumpTo.innerHTML = secs;
+		if (--secs > 0) {
+			setTimeout("countDown(" + secs + ",'" + surl + "')", 1000);
+		} else {
+			location.href = surl;
+			-ma
+		}
+	}
+    </script>
+    
+    <body data-spy="scroll" data-target=".navbar-collapse" style="background:#f1f2f7">
+	<div class="culmn">
+            <div th:include="header :: copy"></div> 
+
+            <!--Featured Section-->
+            <section id="features" class="features" style="font-size: 13px">
+                <div class="container">
+                    <div class="row">
+                        <div class="main_features p-top-100" style="text-align:center;">
+                            <span id="jumpTo">3</span>秒后自动跳转，也可点击直达:<a style="color:blue" th:href="${forwardURL}"><span th:text="${name}"></span></a>
+                            <script th:inline="javascript">
+	                           countDown(1, [[${forwardURL}]]);
+                            </script>
+                        </div>
+                    </div><!-- End off row -->
+                </div><!-- End off container -->
+            </section><!-- End off Featured Section-->
+
+            <!-- scroll up-->
+            <div class="scrollup">
+                <a href="#"><i class="fa fa-chevron-up"></i></a>
+            </div><!-- End off scroll up -->
+            
+            <div th:include="footer :: copy" ></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head_frag(title, meta)">
+        <title th:replace="${title}">盘零零(pan00) - 百度云群组|百度网盘|群组链接|老司机你懂得|实时更新数据</title>
+        
+        <!--/* Per-page placeholder for additional links */-->
+        <th:block th:replace="${meta}" />
+
+        <link rel="icon" type="image/png" href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/images/pan_logo.ico">
+
+        <link rel="stylesheet" href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/swiper.min.css">
+        <link rel="stylesheet" href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/animate.css">
+        <link rel="stylesheet" href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/iconfont.css">
+        <link rel="stylesheet" href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/bootsnav2.css">
+        <link rel="stylesheet" href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/thanks.css">
+        
+        <!--Theme custom css -->
+        <link rel="stylesheet" href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/style.css">
+        <link href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/style3.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/responsive.css" />
+        
+        <link rel="stylesheet" href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/magnific-popup.css">
+        <!-- JS includes -->
+        <script src="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/js/vendor/bootstrap.min.js"></script>
+        <script src="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/js/jquery.easing.1.3.js"></script>
+        <script src="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/js/jquery.collapse.js"></script>
+        <script src="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/js/bootsnav.js"></script>
+        <script src="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/js/plugins.js"></script>        
+        <script src="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/js/jquery.magnific-popup.js"></script>
+        <script src="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/js/swiper.min.js"></script>
+        
+        <script src="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/js/main.js"></script>
+        <!-- 
+        
+        <link href="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/css/demo_table.css" rel="stylesheet" />
+        <script type="text/javascript" src="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://pan00-static.oss-cn-shenzhen.aliyuncs.com/assets/js/DT_bootstrap.js"></script>
+        -->
+        
+        <script>
+        	var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?283502d9531ce4d47e1475e783d5732c";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+    </head>
+</html>

@@ -56,6 +56,8 @@ public class IndexController {
 		model.addAttribute("wangpan", wangpan);
 		List<BaiduYunVO> yun = baiduYunService.listBaiduYun(pageInfo);
 		model.addAttribute("yun", yun);
+		List<BaiduYunVO> make= baiduYunService.listBaiduYunMake(pageInfo);
+		model.addAttribute("make", make);
 
 		return "index";
 	}

@@ -38,6 +38,14 @@ public class Constants {
 	
 	// 主域名
 	public static final String BASE_DOMAIN = "http://www.pan00.com";
+	
+	// 网盘网址
+	public static final String HTTP= "http";
+	public static final String HOME_PAGE_URL = "https://pan.baidu.com/mbox/homepage";
+	public static final String QUESTION_MARK= "?";
+	public static final String SHORT_IDX_UNMARK = "short=";
+	public static final String SHORT_IDX = QUESTION_MARK + SHORT_IDX_UNMARK;
+	
 	/*static{
 		if(test){
 			System.out.println("进入了");

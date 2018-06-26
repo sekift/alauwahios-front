@@ -44,13 +44,13 @@ public class BaiduWangpanDao {
 	// 前端展示查询
 	/**
 	 * 规则： 
-	 * 1 postTime要在4小时内，createTime与updateTime在2小时内 
+	 * 1 postTime要在6小时内，createTime与updateTime在4小时内 
 	 * 2 先按sort、再按postTime、再按updateTime排序、再按hot排序
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<BaiduWangpanVO> listBaiduWangpan(PageInfo pageInfo) {
 		String sql = "SELECT * FROM baidu_wangpan "
-				+ " WHERE postTime > DATE_ADD(now(), INTERVAL -4 HOUR) AND createTime > DATE_ADD(updateTime, INTERVAL -2 HOUR)"
+				+ " WHERE postTime > DATE_ADD(now(), INTERVAL -6 HOUR) AND createTime > DATE_ADD(updateTime, INTERVAL -4 HOUR)"
 				+ " AND status= 1 ORDER BY sort DESC, postTime DESC, updateTime DESC, hot ASC";
 		List<BaiduWangpanVO> list = null;
 		try {

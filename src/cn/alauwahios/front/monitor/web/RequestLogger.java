@@ -135,7 +135,6 @@ public class RequestLogger implements RequestLoggerMBean{
 			if(totalRequestCnt.longValue() !=0 ){
 				sumResqTime = sumResqTime + respTime;
 				avgResqTime = sumResqTime/totalRequestCnt.longValue();
-				System.out.println(avgResqTime);
 			}
 			boolean overTimeFlag=respTime>respTimeThreshold;
 			if(overTimeFlag){

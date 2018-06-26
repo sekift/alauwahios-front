@@ -39,5 +39,14 @@ public class BaiduYunService {
 		// TODO 添加防刷机制
 		return baiduYunDao.listBaiduYun(pageInfo);
 	}
-
+	
+	public boolean saveBaiduYunMake(BaiduYunVO vo){
+		// TODO 添加防刷机制
+		return baiduYunDao.saveBaiduYunMake(vo);
+	}
+	
+	public List<BaiduYunVO> listBaiduYunMake(PageInfo pageInfo) {
+		// TODO 添加防刷机制
+		return baiduYunDao.listBaiduYunMake(pageInfo);
+	}
 }

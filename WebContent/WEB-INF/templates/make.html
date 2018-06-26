@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head th:include="common_header :: head_frag(~{::title},~{::meta})"><!--  th:include="common" -->
+        <meta charset="utf-8">
+        <title>盘零零 - 百度云群组|百度网盘|群组链接|老司机你懂得|实时更新数据</title>
+        <meta name="description" content="盘零零 百度云群组 百度网盘 群组链接 老司机你懂得 实时更新数据">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body data-spy="scroll" data-target=".navbar-collapse" style="background:#f1f2f7">
+	<!-- getScheme()获取协议，getServerName()获取服务器名，getServerPort()服务器端口，getContextPath() APP根路径 -->
+	<a
+		th:href="${#httpServletRequest.getScheme() + '://' + #httpServletRequest.getServerName() + ':' + #request.getServerPort()  + #request.getContextPath() + '/'} "
+		id="contextPath"></a>
+
+	<div class="culmn">
+            <div th:include="header :: copy"></div> 
+
+            <!--Featured Section-->
+            <section id="features" class="features" style="font-size: 13px">
+                <div class="container">
+<!-- 				<div th:if="${error} != null"> 
+					<span id="myAlert" class="alert alert-success" style="width: 80%;">
+						<a href="#" class="close" data-dismiss="alert" th:text="${error}">&times;</a> 
+					</span>
+				</div> -->
+
+				<div class="row">
+                        <div class="main_features p-top-100">
+						<form th:action="@{/make/add}" role="form" id="saveform"
+							method="post">
+							<section class="panel" style="">
+								<div class="panel-body">
+									<div class="tab-content">
+										<div id="about-2" class="tab-pane active">
+											<div class="adv-table">
+												<div class="clearfix">
+													<div style="color: red; text-align: center;">
+														分享你的可用网盘链接！点击就直达，懂你所懂！</div>
+												</div>
+												<div class="form-group form" style="width: 100%;">
+													<label for="name">输入网盘链接short=后面的6-8个字母数字:</label> <input
+														class="form-control" type="text" name="content"
+														id="content" value="">
+												</div>
+												<button class="btn btn-default"
+													style="color: blue; cursor: pointer; font-size: 15px; font-family: 微软雅黑;"
+													th:type="submit"
+													th:onclick="'javascript:return submitFunc()'" value="保存链接">保存链接</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</form>
+
+						<form role="queryform" name="queryform" id="queryform" method="post">
+                                  <section class="panel" style="">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div id="about-2" class="tab-pane active">
+                                                    <div class="adv-table">
+                                                        <div class="space15"></div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
+                                                            <thead>
+                                                            <tr>
+                                                                <th width="30%">链接</th>
+                                                                <th width="20%">发表</th>
+                                                                <th width="20%">更新</th>
+                                                                <th width="15%">访问</th>
+                                                                <!-- <th width="9%">点赞数</th>
+                                                                <th width="7%">点赞</th> -->
+                                                                <th width="15%">置顶</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="odd">
+                                                               <td style="text-align:center" valign="top" colspan="6" th:if="${#lists.isEmpty(result)}" th:text="没有数据，请稍后刷新。"></td>
+                                                            </tr>
+														    <tr th:each="lm : ${result}">
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=yun,id=${entry.id},name=${entry.panShortLink},gogogo=${entry.panLink})}" th:text="${entry.panShortLink}" target="_brank">pan00</a>
+														       </td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.createTime, 'MM-dd HH:mm')}"></td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
+                                                               <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td>
+                                                               <td th:each="entry : ${lm}">
+														          <button th:type="button" class="label label-success" th:onclick="'javascript:saveStar(\''+@{/yun/saveStar}+'\',\''+${entry.id}+'\');'">点赞</button>
+														       </td> -->
+                                                               <td th:each="entry : ${lm}">
+                                                                  <p th:if="${entry.sort == 1}"><button th:type="button" class="label label-success" th:onclick="'javascript:saveSort(\''+@{/make/saveSort}+'\',\''+${entry.id}+'\');'">置顶</button></p>
+                                                                  <p th:if="${entry.sort gt 1}"><button th:type="button" class="label label-success" th:onclick="'javascript:cancelSort(\''+@{/make/cancelSort}+'\',\''+${entry.id}+'\');'">取消置顶</button></p>
+														       </td>
+													        </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                   <div th:include="paging :: copy" ></div>
+                             </form>
+                        </div>
+                    </div><!-- End off row -->
+                </div><!-- End off container -->
+            </section><!-- End off Featured Section-->
+
+		<div th:if="${error} != null">
+			<script th:inline="javascript">
+			$(function() {
+				alert([[${error}]]);
+			});
+		</script>
+		</div>
+
+		<!-- scroll up-->
+            <div class="scrollup">
+                <a href="#"><i class="fa fa-chevron-up"></i></a>
+            </div><!-- End off scroll up -->
+            
+            <div th:include="footer :: copy" ></div>
+        </div>
+    </body>
+    <script>
+	function check() {
+		var content = $("#content").val();
+		if (null == content || "" == content.trim()
+				|| content.length<6 || content.length>8) {
+			alert("输入网盘链接short=后面的6-8个字母数字");
+			return false;
+		}
+		return true;
+	}
+
+	function submitFunc() {
+		return check();
+	}
+	
+        function saveStar(url,id){
+            $.get(url,
+                {
+                    id: id,
+                },
+                function (data, status) {
+                   alert(data.message);
+                },'json');
+        }
+        
+        function saveSort(url,id){
+            $.get(url,
+                {
+                    id: id,
+                },
+                function (data, status) {
+                   alert(data.message);
+                },'json');
+        }
+        
+        function cancelSort(url,id){
+            $.get(url,
+                {
+                    id: id,
+                },
+                function (data, status) {
+                   alert(data.message);
+                },'json');
+        }
+        
+    	function doQuery(newSql) {
+    		if(newSql){ 
+    			//重新初始化页信息
+    			resetPaging();
+    		}
+    		var contextPath = $('#contextPath').attr('href');
+    		document.queryform.action=contextPath + "make";
+    		document.queryform.submit();
+    	}
+    </script>
+</html>

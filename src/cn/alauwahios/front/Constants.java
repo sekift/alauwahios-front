@@ -45,6 +45,7 @@ public class Constants {
 	public static final String QUESTION_MARK= "?";
 	public static final String SHORT_IDX_UNMARK = "short=";
 	public static final String SHORT_IDX = QUESTION_MARK + SHORT_IDX_UNMARK;
+	public static final String BAIDU_TIEBA_COM = "tieba.baidu.com";
 	
 	/*static{
 		if(test){

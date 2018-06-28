@@ -3,54 +3,38 @@ package cn.alauwahios.front.vo;
 import java.util.Date;
 
 /**
- * 百度帖子
- * @author Administrator
+ * 网红表
+ * @author sekift
  *
  */
-public class BaiduTieziVO {
-	private int id;// `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '递增id',
-	private long tieziId;// bigint(22) NOT NULL DEFAULT '0' COMMENT '帖子ID',
-	private String tieziName;// `tieziName` varchar(500) DEFAULT '' COMMENT '帖子文字',
-	private String tieziLink;// `tieziLink` varchar(500) DEFAULT '' COMMENT '帖子链接',
-	private String authorName;//  `authorName` varchar(50) DEFAULT NULL COMMENT '作者名字',
-	private String authorLink;//  `authorLink` varchar(500) DEFAULT NULL COMMENT '作者链接',
-	private String tiebaName;// `tiebaName` varchar(500) DEFAULT '' COMMENT '贴吧文字',
-	private String tiebaLink;// `tiebaLink` varchar(500) DEFAULT '' COMMENT '贴吧链接',
-	private String shortLink;// `shortLink` varchar(200) DEFAULT '' COMMENT '短链接',
-	private Date postTime;// `postTime` datetime DEFAULT NULL COMMENT '发布时间',
+public class InternetCelebrityVO {
+	private int id;// `id` int(11) NOT NULL COMMENT '递增',
+	private String authorId;//`authorId` varchar(50) DEFAULT NULL COMMENT '网红id',
+	private String authorName;// `authorName` varchar(100) DEFAULT NULL COMMENT '网红名称',
+	private String authorLink;// `authorLink` varchar(500) DEFAULT NULL COMMENT '网红链接',
+	private String shortLink;// `shortLink` varchar(100) DEFAULT '' COMMENT '短链接',
+	private String content;// `content` varchar(500) DEFAULT NULL COMMENT '简介',
+	private String type;// `type` varchar(50) DEFAULT NULL COMMENT '网红来源',
 	private Date createTime;// `createTime` datetime NOT NULL COMMENT '抓取时间',
 	private Date updateTime;// `updateTime` datetime NOT NULL COMMENT '更新时间',
-	private int type;// `type` int(11) NOT NULL DEFAULT '0' COMMENT '类别',
 	private int status;// `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态：1 可用 0 不可用。',
 	private int star;// `star` int(11) NOT NULL DEFAULT '0' COMMENT '点赞数',
-	private int sort;// `sort` int(11) NOT NULL DEFAULT '0' COMMENT '人工排序，默认为0',
+	private int sort;// `sort` int(11) NOT NULL DEFAULT '1' COMMENT '人工排序，默认为1',
 	private int hot;// `hot` int(11) NOT NULL DEFAULT '1' COMMENT '热度',
 	private int visits;// `visits` int(11) NOT NULL DEFAULT '0' COMMENT '访问次数',
-	private String remark;// `remark` varchar(500) DEFAULT '' COMMENT '备用字段',
-	
+	private String remark;//`remark` varchar(500) DEFAULT '' COMMENT '备用字段',
+	 
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public long getTieziId() {
-		return tieziId;
+	public String getAuthorId() {
+		return authorId;
 	}
-	public void setTieziId(long tieziId) {
-		this.tieziId = tieziId;
-	}
-	public String getTieziName() {
-		return tieziName;
-	}
-	public void setTieziName(String tieziName) {
-		this.tieziName = tieziName;
-	}
-	public String getTieziLink() {
-		return tieziLink;
-	}
-	public void setTieziLink(String tieziLink) {
-		this.tieziLink = tieziLink;
+	public void setAuthorId(String authorId) {
+		this.authorId = authorId;
 	}
 	public String getAuthorName() {
 		return authorName;
@@ -64,29 +48,23 @@ public class BaiduTieziVO {
 	public void setAuthorLink(String authorLink) {
 		this.authorLink = authorLink;
 	}
-	public String getTiebaName() {
-		return tiebaName;
-	}
-	public void setTiebaName(String tiebaName) {
-		this.tiebaName = tiebaName;
-	}
-	public String getTiebaLink() {
-		return tiebaLink;
-	}
-	public void setTiebaLink(String tiebaLink) {
-		this.tiebaLink = tiebaLink;
-	}
 	public String getShortLink() {
 		return shortLink;
 	}
 	public void setShortLink(String shortLink) {
 		this.shortLink = shortLink;
 	}
-	public Date getPostTime() {
-		return postTime;
+	public String getContent() {
+		return content;
 	}
-	public void setPostTime(Date postTime) {
-		this.postTime = postTime;
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	public Date getCreateTime() {
 		return createTime;
@@ -99,12 +77,6 @@ public class BaiduTieziVO {
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
-	}
-	public int getType() {
-		return type;
-	}
-	public void setType(int type) {
-		this.type = type;
 	}
 	public int getStatus() {
 		return status;
@@ -145,19 +117,15 @@ public class BaiduTieziVO {
 	
 	@Override
 	public String toString() {
-		return "BaiduTieziVO [id=" + id
-				+",tieziId="+tieziId
-				+",tieziName="+tieziName
-				+",tieziLink="+tieziLink
+		return "InternetCelebrityVO [id=" + id
+				+",authorId="+authorId
 				+",authorName="+authorName
 				+",authorLink="+authorLink
-				+",tiebaName="+tiebaName
-				+",tiebaLink="+tiebaLink
 				+",shortLink="+shortLink
-				+",postTime="+postTime
+				+",content="+content
+				+",type="+type
 				+",createTime="+createTime
 				+",updateTime="+updateTime
-				+",type="+type
 				+",status="+status
 				+",star="+star
 				+",sort="+sort
@@ -166,4 +134,5 @@ public class BaiduTieziVO {
 				+",remark="+remark
 				+"]";
 	}
+
 }

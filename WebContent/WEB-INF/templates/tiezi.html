@@ -41,11 +41,11 @@
                                                                 <!-- <th width="8%">序号</th> -->
                                                                 <th width="30%">帖子</th>
                                                                 <th width="30%">贴吧</th>
+                                                                <th width="10%">楼主</th>
                                                                 <th width="10%">发表</th>
                                                                 <!-- <th width="10%">更新</th> -->
-                                                                <th width="10%">热门</th>
-                                                                <th width="10%">访问</th>
-                                                                <!-- <th width="8%">点数</th>
+                                                                <!-- <th width="10%">热门</th>
+                                                                <th width="8%">点数</th>
                                                                 <th width="7%">点赞</th>-->
                                                                 <th width="10%">置顶</th> 
                                                             </tr>
@@ -62,10 +62,13 @@
 														       <td th:each="entry : ${lm}">
 														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${entry.tiebaName}" target="_brank">pan00</a>
 														       </td>
-                                                               <td th:each="entry : ${lm}" th:text="${entry.createTime}"></td>
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.authorName},gogogo=${entry.authorLink})}" th:text="${entry.authorName}" target="_brank">pan00</a>
+														       </td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
                                                                <!-- <td th:each="entry : ${lm}" th:text="${entry.updateTime}"></td> -->
-                                                               <td th:each="entry : ${lm}" th:text="${entry.hot}"> </td>
-                                                               <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.hot}"> </td> -->
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
                                                                <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td>
                                                                <td th:each="entry : ${lm}">
 														          <button th:type="button" class="label label-success" th:onclick="'javascript:saveStar(\''+@{/tiezi/saveStar}+'\',\''+${entry.id}+'\');'">点赞</button>

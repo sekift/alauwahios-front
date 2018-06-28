@@ -221,8 +221,8 @@
                                                             <tr>
                                                                 <th width="30%">帖子</th>
                                                                 <th width="25%">贴吧</th>
+                                                                <th width="15%">楼主</th>
                                                                 <th width="15%">发表</th>
-                                                                <th width="15%">更新</th>
                                                                 <!-- <th width="10%">热门</th> -->
                                                                 <th width="15%">访问</th>
                                                                 <!-- <th width="9%">点赞数</th> -->
@@ -230,18 +230,21 @@
                                                             </thead>
                                                             <tbody>
                                                             <tr class="odd">
-                                                               <td style="text-align:center" valign="top" colspan="6" th:if="${#lists.isEmpty(result)}" th:text="没有数据，请稍后刷新。"></td>
+                                                               <td style="text-align:center" valign="top" colspan="6" th:if="${#lists.isEmpty(tiezi)}" th:text="没有数据，请稍后刷新。"></td>
                                                             </tr>
-														    <tr th:each="lm : ${result}">
+														    <tr th:each="lm : ${tiezi}">
 														       <td th:each="entry : ${lm}">
 														          <a style="color:blue" th:href="@{/forward(type=tiezi,id=${entry.id},name=${entry.tieziName},gogogo=${entry.tieziLink})}" th:text="${entry.tieziName}" target="_brank">pan00</a>
 														       </td>
 														       <td th:each="entry : ${lm}">
 														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${entry.tiebaName}" target="_brank">pan00</a>
 														       </td>
+														        <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.authorName},gogogo=${entry.authorLink})}" th:text="${entry.authorName}" target="_brank">pan00</a>
+														       </td>
                                                                <td th:each="entry : ${lm}" th:text="${#dates.format(entry.createTime, 'MM-dd HH:mm')}"></td>
-                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
-                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.hot}"> </td> -->
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
+                                                               <td th:each="entry : ${lm}" th:text="${entry.hot}"> </td> -->
                                                                <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
                                                                <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td> -->
 													        </tr>

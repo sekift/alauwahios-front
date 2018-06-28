@@ -35,6 +35,11 @@ public class BaiduTieziService {
 		return baiduTieziDao.cancelSort(id);
 	}
 	
+	public boolean saveBaiduTiezi(BaiduTieziVO vo) {
+		// TODO 添加防刷机制
+		return baiduTieziDao.saveBaiduTiezi(vo);
+	}
+	
 	public List<BaiduTieziVO> listBaiduTiezi(PageInfo pageInfo) {
 		// TODO 添加防刷机制
 		return baiduTieziDao.listBaiduTiezi(pageInfo);

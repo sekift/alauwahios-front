@@ -10,35 +10,11 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import cn.alauwahios.front.service.ForwardService;
-
 /**
  * 异步执行类
  * @version: 1.0.0
  */
-@Service("threadPoolsService")
 public class ThreadPoolsService {
-	private static final int corePoolSize = 2;
-	private static final int maximumPoolSize = 10;
-	private static final int keepAliveTime = 5 * 60;
-	private static final String poolName = "statistics_asyn";
-
-	@Autowired
-	private ForwardService forwardService;
-	
-	private static ExecutorService threadpool = newExecutorService(corePoolSize, maximumPoolSize, keepAliveTime, poolName);
-
-	public void setAsynQueue(final int id, final String type, final String gogogo) {
-		threadpool.execute(new Runnable() {
-			public void run() {
-				forwardService.saveVisits(id, type, gogogo);
-			}
-		});
-	}
-
 	/**
 	 * 根据参数创建执行者服务
 	 * 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cn.alauwahios.front.Constants;
-import cn.alauwahios.front.asyn.ThreadPoolsService;
+import cn.alauwahios.front.asyn.StatisticsAsyn;
 import cn.alauwahios.front.util.StringUtil;
 
 /**
@@ -22,7 +22,7 @@ import cn.alauwahios.front.util.StringUtil;
 public class ForwardController {
 	
 	@Autowired
-	private ThreadPoolsService threadPoolsService;
+	private StatisticsAsyn statisticsAsyn;
 
 	@RequestMapping(value = "/forward", method = RequestMethod.GET)
 	public String showForward(HttpServletRequest request, HttpServletResponse response,
@@ -36,7 +36,7 @@ public class ForwardController {
 		}
 		
 		// 异步统计
-		threadPoolsService.setAsynQueue(id, type, gogogo);
+		statisticsAsyn.setAsynQueue(id, type, gogogo);
 		
 		model.addAttribute("forwardURL", gogogo);
 		model.addAttribute("name", name);

@@ -75,7 +75,7 @@ public class BaiduYunDao {
 		}
 		String sql = "INSERT INTO baidu_yun(panShortLink,panLink,"
 				+ " shortLink,createTime,updateTime,type,status,star,sort,hot,visits,remark)"
-				+ " VALUES(?,?,?,now(),now(),?,1,0,1,1,0,?) ON DUPLICATE KEY UPDATE updateTime=now(),hot=hot+1";
+				+ " VALUES(?,?,?,now(),now(),?,1,0,1,1,0,?) ON DUPLICATE KEY UPDATE type=1,updateTime=now(),hot=hot+1";
 		List<Object> params = new ArrayList<Object>();
 		params.add(vo.getPanShortLink());
 		params.add(vo.getPanLink());

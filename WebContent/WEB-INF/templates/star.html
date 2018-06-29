@@ -39,15 +39,12 @@
                                                             <thead>
                                                             <tr>
                                                                 <!-- <th width="8%">序号</th> -->
-                                                                <th width="30%">帖子</th>
-                                                                <th width="30%">贴吧</th>
-                                                                <th width="16%">楼主</th>
-                                                                <th width="8%">发表</th>
-                                                                <!-- <th width="10%">更新</th> -->
-                                                                <!-- <th width="10%">热门</th>
-                                                                <th width="8%">点数</th>-->
-                                                                <th width="8%">访问</th>
-                                                                <th width="8%">置顶</th> 
+                                                                <th width="30%">名字</th>
+                                                                <th width="30%">简介</th>
+                                                                <th width="10%">来源</th>
+                                                                <th width="10%">发表</th>
+                                                                <th width="10%">访问</th>
+                                                                <th width="10%">置顶</th> 
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -57,25 +54,22 @@
 														    <tr th:each="lm : ${result}">
 														       <!-- <td th:each="entry : ${lm}" th:text="${entry.id}"> </td> -->
 														       <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=tiezi,id=${entry.id},name=${entry.tieziName},gogogo=${entry.tieziLink})}" th:text="${#strings.substring(entry.tieziName,0,1) + '..'}" target="_brank">pan00</a>
+														          <a style="color:blue" th:href="@{/forward(type=internet_celebrity,id=${entry.id},name=${entry.authorName},gogogo=${entry.authorLink})}" th:text="${entry.authorName}" target="_brank">pan00</a>
 														       </td>
-														       <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${#strings.length(entry.tiebaName) le 3?entry.tiebaName:#strings.substring(entry.tiebaName,0,2)+'..'}" target="_brank">pan00</a>
-														       </td>
-														       <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.authorName},gogogo=${entry.authorLink})}" th:text="${entry.authorName}" target="_brank">pan00</a>
-														       </td>
+                                                               <td th:each="entry : ${lm}" th:text="${entry.content}"> </td>
+                                                               <td th:each="entry : ${lm}" th:text="((${entry.type} == 100101)?'贴吧':'微博')"> </td>
                                                                <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
                                                                <!-- <td th:each="entry : ${lm}" th:text="${entry.updateTime}"></td> -->
                                                                <!-- <td th:each="entry : ${lm}" th:text="${entry.hot}"> </td> -->
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
                                                                <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td>
                                                                <td th:each="entry : ${lm}">
-														          <button th:type="button" class="label label-success" th:onclick="'javascript:saveStar(\''+@{/tiezi/saveStar}+'\',\''+${entry.id}+'\');'">点赞</button>
+														          <button th:type="button" class="label label-success" th:onclick="'javascript:saveStar(\''+@{/star/saveStar}+'\',\''+${entry.id}+'\');'">点赞</button>
 														       </td>-->
                                                                <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
                                                                <td th:each="entry : ${lm}">
-                                                                  <p th:if="${entry.sort == 1}"><button th:type="button" class="label label-success" th:onclick="'javascript:saveSort(\''+@{/tiezi/saveSort}+'\',\''+${entry.id}+'\');'">置顶</button></p>
-                                                                  <p th:if="${entry.sort gt 1}"><button th:type="button" class="label label-success" th:onclick="'javascript:cancelSort(\''+@{/tiezi/cancelSort}+'\',\''+${entry.id}+'\');'">取消置顶</button></p>
+                                                                  <p th:if="${entry.sort == 1}"><button th:type="button" class="label label-success" th:onclick="'javascript:saveSort(\''+@{/star/saveSort}+'\',\''+${entry.id}+'\');'">置顶</button></p>
+                                                                  <p th:if="${entry.sort gt 1}"><button th:type="button" class="label label-success" th:onclick="'javascript:cancelSort(\''+@{/star/cancelSort}+'\',\''+${entry.id}+'\');'">取消置顶</button></p>
 														       </td>
 													        </tr>
                                                             </tbody>
@@ -137,7 +131,7 @@
     			resetPaging();
     		}
     		var contextPath = $('#contextPath').attr('href');
-    		document.queryform.action=contextPath + "tiezi";
+    		document.queryform.action=contextPath + "star";
     		document.queryform.submit();
     	}
     </script>

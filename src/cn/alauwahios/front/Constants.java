@@ -35,6 +35,7 @@ public class Constants {
 	public static final String YUN = "yun";
 	public static final String WANGPAN_TIEBA = "wangpan_tieba";
 	public static final String TIEZI_TIEBA = "tiezi_tieba";
+	public static final String INTERNET_CELEBRITY = "internet_celebrity";
 	
 	// 主域名
 	public static final String BASE_DOMAIN = "http://www.pan00.com";

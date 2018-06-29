@@ -14,7 +14,7 @@ public class InternetCelebrityVO {
 	private String authorLink;// `authorLink` varchar(500) DEFAULT NULL COMMENT '网红链接',
 	private String shortLink;// `shortLink` varchar(100) DEFAULT '' COMMENT '短链接',
 	private String content;// `content` varchar(500) DEFAULT NULL COMMENT '简介',
-	private String type;// `type` varchar(50) DEFAULT NULL COMMENT '网红来源',
+	private int type;// `type` int(11) DEFAULT NULL COMMENT '网红来源',
 	private Date createTime;// `createTime` datetime NOT NULL COMMENT '抓取时间',
 	private Date updateTime;// `updateTime` datetime NOT NULL COMMENT '更新时间',
 	private int status;// `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态：1 可用 0 不可用。',
@@ -60,10 +60,10 @@ public class InternetCelebrityVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getType() {
+	public int getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 	public Date getCreateTime() {

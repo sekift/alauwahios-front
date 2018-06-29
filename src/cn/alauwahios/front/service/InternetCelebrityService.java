@@ -44,5 +44,4 @@ public class InternetCelebrityService {
 		// TODO 添加防刷机制
 		return internetCelebrityDao.listInternetCelebrity(pageInfo);
 	}
-
 }

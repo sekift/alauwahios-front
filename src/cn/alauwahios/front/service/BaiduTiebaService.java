@@ -59,4 +59,8 @@ public class BaiduTiebaService {
 		}
 		return baiduTiebaDao.getIdByTiebaKw(tiebaKw);
 	}
+	
+	public boolean saveBaiduTieba(BaiduTiebaVO vo) {
+		return baiduTiebaDao.saveBaiduTieba(vo);
+	}
 }

@@ -23,17 +23,39 @@
                 <div class="container">
                     <div class="row">
                         <div class="main_features p-top-100">
+                        <form th:action="@{/tiezi/add}" role="form" id="saveform"
+							method="post">
+							<section class="panel" style="">
+								<div class="panel-body">
+									<div class="tab-content">
+										<div id="about-2" class="tab-pane active">
+											<div class="adv-table">
+												<div class="clearfix">
+													<div style="color: red; text-align: center;">
+														分享精彩的帖子链接！点击就直达，懂你所懂！</div>
+												</div>
+												<div class="form-group form" style="width: 100%;">
+													<label for="name">请只输入帖子/p/后的9或10位数字:</label> <input
+														class="form-control" type="text" name="content"
+														id="content" value="">
+												</div>
+												<button class="btn btn-default"
+													style="color: blue; cursor: pointer; font-size: 15px; font-family: 微软雅黑;"
+													th:type="submit"
+													th:onclick="'javascript:return submitFunc()'" value="保存帖子">保存帖子</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</form>
+						
                             <form role="queryform" name="queryform" id="queryform" method="post">
                                 <section class="panel" style="">
                                         <div class="panel-body">
                                             <div class="tab-content">
                                                 <div id="about-2" class="tab-pane active">
                                                     <div class="adv-table">
-                                                        <div class="clearfix">
-                                                            <div style="color:red;text-align:center;">
-                                                                   精彩贴子，精彩贴子！点击就直达，懂你所懂！
-                                                            </div>
-                                                        </div>
                                                         <div class="space15"></div>
                                                         <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
                                                             <thead>
@@ -92,6 +114,37 @@
                 </div><!-- End off container -->
             </section><!-- End off Featured Section-->
 
+		<!-- <div th:if="${error} != null"> -->
+		<script th:inline="javascript">
+			$(function() {
+				　　function GetUrlParam(paraName) {
+				　　　　var url = document.location.toString();
+				　　　　var arrObj = url.split("?");
+				　　　　if (arrObj.length > 1) {
+				　　　　　　var arrPara = arrObj[1].split("&");
+				　　　　　　var arr;
+
+				　　　　　　for (var i = 0; i < arrPara.length; i++) {
+				　　　　　　　　arr = arrPara[i].split("=");
+
+				　　　　　　　　if (arr != null && arr[0] == paraName) {
+				　　　　　　　　　　return decodeURI(arr[1]);
+				　　　　　　　　}
+				　　　　　　}
+				　　　　　　return null;
+				　　　　}
+				　　　　else {
+				　　　　　　return null;
+				　　　　}
+				　　}
+				
+				if(GetUrlParam("error") != null){
+				    alert(GetUrlParam("error"));
+			    }
+			});
+		</script>
+		<!-- </div> -->
+		
             <!-- scroll up-->
             <div class="scrollup">
                 <a href="#"><i class="fa fa-chevron-up"></i></a>
@@ -101,6 +154,20 @@
         </div>
     </body>
     <script>
+	function check() {
+		var content = $("#content").val();
+		if (null == content || "" == content.trim()
+				|| content.length<6 || content.length>10) {
+			alert("请只输入帖子/p/后的9或10位数字。");
+			return false;
+		}
+		return true;
+	}
+
+	function submitFunc() {
+		return check();
+	}
+	
         function saveStar(url,id){
             $.get(url,
                 {

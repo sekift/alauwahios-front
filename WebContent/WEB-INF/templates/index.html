@@ -234,15 +234,62 @@
                                                             </tr>
 														    <tr th:each="lm : ${tiezi}">
 														       <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=tiezi,id=${entry.id},name=${entry.tieziName},gogogo=${entry.tieziLink})}" th:text="${entry.tieziName}" target="_brank">pan00</a>
+														          <a style="color:blue" th:href="@{/forward(type=tiezi,id=${entry.id},name=${entry.tieziName},gogogo=${entry.tieziLink})}" th:text="${#strings.length(entry.tieziName) le 4?entry.tieziName:#strings.substring(entry.tieziName,0,3)+'..'}" target="_brank">pan00</a>
 														       </td>
 														       <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${entry.tiebaName}" target="_brank">pan00</a>
+														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${#strings.length(entry.tiebaName) le 4?entry.tiebaName:#strings.substring(entry.tiebaName,0,3)+'..'}" target="_brank">pan00</a>
 														       </td>
 														        <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.authorName},gogogo=${entry.authorLink})}" th:text="${entry.authorName}" target="_brank">pan00</a>
+														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.authorName},gogogo=${entry.authorLink})}" th:text="${#strings.length(entry.authorName) le 4?entry.authorName:#strings.substring(entry.authorName,0,3)+'..'}" target="_brank">pan00</a>
 														       </td>
                                                                <td th:each="entry : ${lm}" th:text="${#dates.format(entry.createTime, 'MM-dd HH:mm')}"></td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
+                                                               <td th:each="entry : ${lm}" th:text="${entry.hot}"> </td> -->
+                                                               <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td> -->
+													        </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    
+                                                                        <section class="panel" style="">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div id="about-2" class="tab-pane active">
+                                                    <div class="adv-table">
+                                                        <div class="clearfix">
+                                                            <div style="color:red;">
+                                                               <h3>6.网红咖姬，更多请点击：<a style="color:blue" th:href="@{/star}">网红咖姬</a></h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="space15"></div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
+                                                            <thead>
+                                                            <tr>
+                                                                <th width="25%">名称</th>
+                                                                <!-- <th width="30%">简介</th> -->
+                                                                <th width="15%">来源</th>
+                                                                <th width="15%">发表</th>
+                                                                <!-- <th width="10%">热门</th> -->
+                                                                <th width="15%">访问</th>
+                                                                <!-- <th width="9%">点赞数</th> -->
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="odd">
+                                                               <td style="text-align:center" valign="top" colspan="6" th:if="${#lists.isEmpty(star)}" th:text="没有数据，请稍后刷新。"></td>
+                                                            </tr>
+														    <tr th:each="lm : ${star}">
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=internet_celebrity,id=${entry.id},name=${entry.authorName},gogogo=${entry.authorLink})}" th:text="${entry.authorName}" target="_brank">pan00</a>
+														       </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.content}"> </td> -->
+                                                               <td th:each="entry : ${lm}" th:text="((${entry.type} == 100101)?'贴吧':'微博')"> </td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
                                                                <!-- <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
                                                                <td th:each="entry : ${lm}" th:text="${entry.hot}"> </td> -->
                                                                <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>

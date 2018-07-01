@@ -1,5 +1,6 @@
 package cn.alauwahios.front.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -73,6 +74,36 @@ public class BaiduTiebaDao {
 			id = 0;
 		}
 		return id;
+	}
+	
+	/**
+	 * 贴吧信息
+	 * @param vo
+	 * @return
+	 */
+	public boolean saveBaiduTieba(BaiduTiebaVO vo) {
+		boolean result = false;
+		if (null == vo) {
+			return result;
+		}
+		String sql = "INSERT INTO baidu_tieba(tiebaKw,tiebaName,"
+				+ " tiebaLink,shortLink,createTime,updateTime,type,status,star,sort,hot,visits,remark)"
+				+ " VALUES(?,?,?,?,now(),now(),?,1,0,1,1,0,?) ON DUPLICATE KEY UPDATE updateTime=now(),hot=hot+1";
+		List<Object> params = new ArrayList<Object>();
+		params.add(vo.getTiebaKw());
+		params.add(vo.getTiebaName());
+		params.add(vo.getTiebaLink());
+		params.add(vo.getShortLink());
+		params.add(vo.getType());
+		params.add(vo.getRemark());
+		
+		try {
+			result = DBOperate.update(Constants.ALIAS_MASTER, sql, params.toArray()) > 0;
+		} catch (Exception e) {
+			result = false;
+			logger.error("[贴吧链接]插入数据出错", e);
+		}
+		return result;
 	}
 	
 }

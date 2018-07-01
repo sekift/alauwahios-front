@@ -40,7 +40,7 @@
                                                             <tr>
                                                                 <!-- <th width="8%">序号</th> -->
                                                                 <th width="30%">名字</th>
-                                                                <th width="30%">简介</th>
+                                                                <!-- <th width="30%">简介</th> -->
                                                                 <th width="10%">来源</th>
                                                                 <th width="10%">发表</th>
                                                                 <th width="10%">访问</th>
@@ -56,7 +56,7 @@
 														       <td th:each="entry : ${lm}">
 														          <a style="color:blue" th:href="@{/forward(type=internet_celebrity,id=${entry.id},name=${entry.authorName},gogogo=${entry.authorLink})}" th:text="${entry.authorName}" target="_brank">pan00</a>
 														       </td>
-                                                               <td th:each="entry : ${lm}" th:text="${entry.content}"> </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.content}"> </td> -->
                                                                <td th:each="entry : ${lm}" th:text="((${entry.type} == 100101)?'贴吧':'微博')"> </td>
                                                                <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
                                                                <!-- <td th:each="entry : ${lm}" th:text="${entry.updateTime}"></td> -->

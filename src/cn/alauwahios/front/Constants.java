@@ -42,11 +42,19 @@ public class Constants {
 	
 	// 网盘网址
 	public static final String HTTP= "http";
+	public static final String HTTPS= "https";
+	public static final String HTTP_MARK= HTTP + "://";
+	public static final String HTTPS_MARK= HTTPS + "://";
 	public static final String HOME_PAGE_URL = "https://pan.baidu.com/mbox/homepage";
 	public static final String QUESTION_MARK= "?";
 	public static final String SHORT_IDX_UNMARK = "short=";
 	public static final String SHORT_IDX = QUESTION_MARK + SHORT_IDX_UNMARK;
 	public static final String BAIDU_TIEBA_COM = "tieba.baidu.com";
+	public static final String BAIDU_TIEZI_P = "/p/";
+	public static final String BAIDU_TIEZI_BASE = HTTPS_MARK + BAIDU_TIEBA_COM + BAIDU_TIEZI_P; 
+	public static final String BAIDU_TIEBA_F = "/f?kw=";
+	public static final String BAIDU_TIEBA_PATH = HTTPS_MARK + BAIDU_TIEBA_COM + BAIDU_TIEBA_F;
+	
 	
 	/*static{
 		if(test){

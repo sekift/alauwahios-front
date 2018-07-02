@@ -79,13 +79,13 @@
 														    <tr th:each="lm : ${result}">
 														       <!-- <td th:each="entry : ${lm}" th:text="${entry.id}"> </td> -->
 														       <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=tiezi,id=${entry.id},name=${entry.tieziName},gogogo=${entry.tieziLink})}" th:text="${#strings.substring(entry.tieziName,0,1) + '..'}" target="_brank">pan00</a>
+														          <a style="color:blue" th:href="@{/forward(type=tiezi,id=${entry.id},name=${entry.tieziName},gogogo=${entry.tieziLink})}" th:text="${#strings.length(entry.tieziName) le 8?entry.tieziName:#strings.substring(entry.tieziName,0,7)+'..'}" target="_brank">pan00</a>
 														       </td>
 														       <td th:each="entry : ${lm}">
 														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${#strings.length(entry.tiebaName) le 3?entry.tiebaName:#strings.substring(entry.tiebaName,0,2)+'..'}" target="_brank">pan00</a>
 														       </td>
 														       <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.authorName},gogogo=${entry.authorLink})}" th:text="${entry.authorName}" target="_brank">pan00</a>
+														          <a style="color:blue" th:href="@{/forward(type=tiezi_tieba,id=${entry.id},name=${entry.authorName},gogogo=${entry.authorLink})}" th:text="${#strings.length(entry.authorName) le 5?entry.authorName:#strings.substring(entry.authorName,0,4)+'..'}" target="_brank">pan00</a>
 														       </td>
                                                                <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
                                                                <!-- <td th:each="entry : ${lm}" th:text="${entry.updateTime}"></td> -->

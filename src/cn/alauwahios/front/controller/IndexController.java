@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cn.alauwahios.front.dao.InternetCelebrityDao;
 import cn.alauwahios.front.service.BaiduTiebaService;
 import cn.alauwahios.front.service.BaiduTieziService;
 import cn.alauwahios.front.service.BaiduWangpanService;

@@ -56,31 +56,31 @@ public class ParserContentService {
 		//帖子ID
 		String[] tieziStr = tieziLink.split("\\/");
 		String tieziId = tieziStr[tieziStr.length - 1];
-		System.out.println(tieziId);
+		//System.out.println(tieziId);
 		
 		//帖子文字
-		String tieziName = title.substring(0,title.lastIndexOf("【"));
-		System.out.println(tieziName);
+		String tieziName = title;//.substring(0,title.length() - 5)
+		//System.out.println(tieziName);
 		//帖子链接
-		System.out.println(tieziLink);
+		//System.out.println(tieziLink);
 		
 		String tiebaName = meta.attr("fname");
 		String tiebaLink = "https://"+meta.attr("furl").replace("&ie=utf-8", "");
 		//贴吧名称
-		System.out.println(tiebaName);
+		//System.out.println(tiebaName);
 		//贴吧链接
-		System.out.println(tiebaLink);
+		//System.out.println(tiebaLink);
 		
 		Element body = doc.body();
 		Elements scriptEle = body.getElementsByClass("d_name");//.first().getElementsByTag("script").first()
 		//作者名称
 		String authorName = scriptEle.first().text();
-		System.out.println(authorName);
+		//System.out.println(authorName);
 		
 		//作者链接
 		String authorLink = "https://tieba.baidu.com"+scriptEle.first().select("a").attr("href");
 		authorLink = authorLink.replace("&ie=utf-8", "").replace("&fr=pb", "");
-		System.out.println(authorLink);
+		//System.out.println(authorLink);
 		
 		saveBaiduTiezi(tieziId, tieziName, tieziLink, authorName, authorLink, tiebaName, tiebaLink);
 		saveBaiduTieba(tiebaName, tiebaLink);
@@ -93,7 +93,6 @@ public class ParserContentService {
 		BaiduTieziVO vo = new BaiduTieziVO();
 		vo.setTieziId(Long.valueOf(tieziId));
 		vo.setTieziName(tieziName);
-		
 		vo.setTieziLink(tieziLink);
 		vo.setAuthorName(authorName);
 		vo.setAuthorLink(authorLink);

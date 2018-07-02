@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vdurmont.emoji.EmojiParser;
+
 import cn.alauwahios.front.Constants;
 import cn.alauwahios.front.util.JsoupUtil;
 import cn.alauwahios.front.util.UrlUtil;
@@ -51,7 +53,7 @@ public class ParserContentService {
 		
 		//System.out.println(result.body());
 		Element ele = doc.head();
-		String title = ele.getElementsByTag("title").html();
+		String title = ele.getElementsByTag("title").text();
 		Elements meta = ele.getElementsByTag("meta");
 		//帖子ID
 		String[] tieziStr = tieziLink.split("\\/");
@@ -59,7 +61,8 @@ public class ParserContentService {
 		//System.out.println(tieziId);
 		
 		//帖子文字
-		String tieziName = title;//.substring(0,title.length() - 5)
+		String tieziName = EmojiParser.removeAllEmojis(title);
+		tieziName = tieziName.substring(0, tieziName.length() - 5);
 		//System.out.println(tieziName);
 		//帖子链接
 		//System.out.println(tieziLink);

@@ -45,14 +45,14 @@ public class BaiduYunDao {
 	// 前端展示查询
 	/**
 	 * 规则： 
-	 * 1 postTime要在40分钟内，createTime与updateTime在20分钟内 
-	 * 2 先按sort、再按postTime、再按updateTime排序、再按hot排序
+	 * 1 postTime要在6小时内，createTime与updateTime在6小时分钟内 
+	 * 2 先按sort、再按updateTime排序、再按hot排序
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<BaiduYunVO> listBaiduYun(PageInfo pageInfo) {
 		String sql = "SELECT * FROM baidu_yun "
-				+ " WHERE updateTime > DATE_ADD(now(), INTERVAL -40 MINUTE) AND createTime > DATE_ADD(updateTime, INTERVAL -20 MINUTE)"
-				+ " AND status= 1 AND type=0 ORDER BY sort DESC, updateTime DESC, hot ASC";
+				+ " WHERE updateTime > DATE_ADD(now(), INTERVAL -6 HOUR) AND createTime > DATE_ADD(updateTime, INTERVAL -6 HOUR)"
+				+ " AND status= 1 AND type=0 ORDER BY sort DESC, updateTime DESC";
 		List<BaiduYunVO> list = null;
 		try {
 			list = (List<BaiduYunVO>) Data2PageUtil.queryQuietly(Constants.ALIAS_SLAVE, pageInfo, sql,

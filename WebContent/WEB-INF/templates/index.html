@@ -69,6 +69,48 @@
                                         </div>
                                     </section>
                                     
+                           <section class="panel" style="">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div id="about-2" class="tab-pane active">
+                                                    <div class="adv-table">
+                                                        <div class="clearfix">
+                                                            <div style="color:red;">
+                                                                    <h3>2.云盘链接，更多请点击：<a style="color:blue" th:href="@{/yun}">云盘链接</a></h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="space15"></div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
+                                                            <thead>
+                                                            <tr>
+                                                                <th width="20%">链接</th>
+                                                                <th width="30%">发表</th>
+                                                                <th width="30%">更新</th>
+                                                                <th width="20%">访问</th>
+                                                                <!-- <th width="10%">点赞数</th> -->
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="odd">
+                                                               <td style="text-align:center" valign="top" colspan="6" th:if="${#lists.isEmpty(yun)}" th:text="没有数据，请稍后刷新。"></td>
+                                                            </tr>
+														    <tr th:each="lm : ${yun}">
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=yun,id=${entry.id},name=${entry.panShortLink},gogogo=${entry.panLink})}" th:text="${entry.panShortLink}" target="_brank">pan00</a>
+														       </td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.createTime, 'MM-dd HH:mm')}"></td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
+                                                               <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td> -->
+													        </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    
 						<section class="panel" style="">
                                         <div class="panel-body">
                                             <div class="tab-content">
@@ -76,7 +118,7 @@
                                                     <div class="adv-table">
                                                         <div class="clearfix">
                                                             <div style="color:red;">
-                                                                   <h3>2.网盘链接，更多请点击：<a style="color:blue" th:href="@{/wangpan}">网盘链接</a></h3>
+                                                                   <h3>3.网盘链接，更多请点击：<a style="color:blue" th:href="@{/wangpan}">网盘链接</a></h3>
                                                             </div>
                                                         </div>
                                                         <div class="space15"></div>
@@ -108,48 +150,6 @@
 														       </td>
                                                                <td th:each="entry : ${lm}" th:text="${#dates.format(entry.postTime, 'MM-dd HH:mm')}"> </td>
                                                                <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"> </td>
-                                                               <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
-                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td> -->
-													        </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                        
-                        <section class="panel" style="">
-                                        <div class="panel-body">
-                                            <div class="tab-content">
-                                                <div id="about-2" class="tab-pane active">
-                                                    <div class="adv-table">
-                                                        <div class="clearfix">
-                                                            <div style="color:red;">
-                                                                    <h3>3.云盘链接，更多请点击：<a style="color:blue" th:href="@{/yun}">云盘链接</a></h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="space15"></div>
-                                                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
-                                                            <thead>
-                                                            <tr>
-                                                                <th width="20%">链接</th>
-                                                                <th width="30%">发表</th>
-                                                                <th width="30%">更新</th>
-                                                                <th width="20%">访问</th>
-                                                                <!-- <th width="10%">点赞数</th> -->
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr class="odd">
-                                                               <td style="text-align:center" valign="top" colspan="6" th:if="${#lists.isEmpty(yun)}" th:text="没有数据，请稍后刷新。"></td>
-                                                            </tr>
-														    <tr th:each="lm : ${yun}">
-														       <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=yun,id=${entry.id},name=${entry.panShortLink},gogogo=${entry.panLink})}" th:text="${entry.panShortLink}" target="_brank">pan00</a>
-														       </td>
-                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.createTime, 'MM-dd HH:mm')}"></td>
-                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>
                                                                <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
                                                                <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td> -->
 													        </tr>

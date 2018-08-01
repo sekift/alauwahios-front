@@ -22,6 +22,9 @@ public class ForwardService {
 	@Autowired
 	private InternetCelebrityService internetCelebrityService;
 	
+	@Autowired
+	private FxZiyuanService fxZiyuanService;
+	
 	public boolean saveVisits(int id, String type, String gogogo) {
 		boolean flag = false;
 		if (Constants.TIEBA.equals(type)) {
@@ -38,6 +41,8 @@ public class ForwardService {
 			flag = baiduYunService.saveVisits(id);
 		} else if (Constants.INTERNET_CELEBRITY.equals(type)) {
 			flag = internetCelebrityService.saveVisits(id);
+		} else if(Constants.ZIYUAN.equals(type)){
+			flag = fxZiyuanService.saveVisits(id);
 		}
 		return flag;
 	}

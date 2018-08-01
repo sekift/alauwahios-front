@@ -31,7 +31,7 @@
                                                     <div class="adv-table">
                                                         <div class="clearfix">
                                                             <div style="color:red;text-align:center;">
-                                                                   热门贴吧，热门贴吧！点击就直达，懂你所懂！
+                                                                   火热资源，火热资源！点击就直达，懂你所懂！
                                                             </div>
                                                         </div>
                                                         <div class="space15"></div>
@@ -65,8 +65,8 @@
 														          <button th:type="button" class="label label-success" th:onclick="'javascript:saveStar(\''+@{/tieba/saveStar}+'\',\''+${entry.id}+'\');'">点赞</button>
 														       </td> -->
                                                                <td th:each="entry : ${lm}">
-                                                                  <p th:if="${entry.sort == 1}"><button th:type="button" class="label label-success" th:onclick="'javascript:saveSort(\''+@{/tieba/saveSort}+'\',\''+${entry.id}+'\');'">置顶</button></p>
-                                                                  <p th:if="${entry.sort gt 1}"><button th:type="button" class="label label-success" th:onclick="'javascript:cancelSort(\''+@{/tieba/cancelSort}+'\',\''+${entry.id}+'\');'">取消置顶</button></p>
+                                                                  <p th:if="${entry.sort == 1}"><button th:type="button" class="label label-success" th:onclick="'javascript:saveSort(\''+@{/ziyuan/saveSort}+'\',\''+${entry.id}+'\');'">置顶</button></p>
+                                                                  <p th:if="${entry.sort gt 1}"><button th:type="button" class="label label-success" th:onclick="'javascript:cancelSort(\''+@{/ziyuan/cancelSort}+'\',\''+${entry.id}+'\');'">取消置顶</button></p>
 														       </td>
 													        </tr>
                                                             </tbody>

@@ -24,7 +24,18 @@
                     <div class="row">
                         <div class="main_features p-top-100">
                             <form role="queryform" name="queryform" id="queryform" method="post">
-                                <section class="panel" style="">
+                            
+							<div class="input-group">
+								<span class="input-group-addon">☞</span>
+								<input class="form-control" placeholder="输入简单关键字"
+									type="text" name="keyword" id="keyword" th:value="${keyword}">
+							</div>
+							<div style="text-align: center;">
+							<input class="btn btn-default" type="submit" name="query"
+									onclick="doQuery(true)" value="点我查询" />
+							</div>
+							
+							<section class="panel" style="">
                                         <div class="panel-body">
                                             <div class="tab-content">
                                                 <div id="about-2" class="tab-pane active">

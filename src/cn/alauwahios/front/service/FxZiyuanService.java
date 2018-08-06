@@ -39,9 +39,9 @@ public class FxZiyuanService {
 		return fxZiyuanDao.cancelSort(id);
 	}
 
-	public List<FxZiyuanVO> listFxZiyuan(PageInfo pageInfo) {
+	public List<FxZiyuanVO> listFxZiyuan(String keyword, PageInfo pageInfo) {
 		// TODO 添加防刷机制
-		return fxZiyuanDao.listFxZiyuan(pageInfo);
+		return fxZiyuanDao.listFxZiyuan(keyword, pageInfo);
 	}
 	
 	public int getIdByFxKw(String gogogo){

@@ -70,7 +70,7 @@ public class IndexController {
 		model.addAttribute("make", make);
 		List<InternetCelebrityVO> star = internetCelebrityService.listInternetCelebrity(pageInfo);
 		model.addAttribute("star", star);
-		List<FxZiyuanVO> ziyuan = fxZiyuanService.listFxZiyuan(pageInfo);
+		List<FxZiyuanVO> ziyuan = fxZiyuanService.listFxZiyuan("", pageInfo);
 		model.addAttribute("ziyuan", ziyuan);
 
 		return "index";

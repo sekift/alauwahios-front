@@ -38,7 +38,8 @@ public class FxZiyuanController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listZiyuan(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
-		List<FxZiyuanVO> result = fxZiyuanService.listFxZiyuan(pageInfo);
+		model.addAttribute("keyword", "");
+		List<FxZiyuanVO> result = fxZiyuanService.listFxZiyuan("", pageInfo);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "ziyuan";
@@ -55,9 +56,11 @@ public class FxZiyuanController {
 	 */
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public String searchPost(
+			@RequestParam(value = "keyword", defaultValue = "", required = false) String keyword,
 			PageInfo pageInfo,
 			HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-		List<FxZiyuanVO> result = fxZiyuanService.listFxZiyuan(pageInfo);
+		model.addAttribute("keyword", keyword);
+		List<FxZiyuanVO> result = fxZiyuanService.listFxZiyuan(keyword, pageInfo);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "ziyuan";

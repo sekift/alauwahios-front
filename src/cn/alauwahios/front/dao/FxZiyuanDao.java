@@ -8,10 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import cn.alauwahios.front.util.Data2PageUtil;
-
 import cn.alauwahios.front.Constants;
 import cn.alauwahios.front.dao.impl.DBOperate;
+import cn.alauwahios.front.util.Data2PageUtil;
+import cn.alauwahios.front.util.StringUtil;
 import cn.alauwahios.front.vo.FxZiyuanVO;
 import cn.alauwahios.front.vo.PageInfo;
 
@@ -54,12 +54,19 @@ public class FxZiyuanDao {
 	 * 规则：先按sort、再按postTime、再按visits排序
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<FxZiyuanVO> listFxZiyuan(PageInfo pageInfo) {
-		String sql = "SELECT * FROM fx_ziyuan WHERE status= 1 ORDER BY sort DESC,postTime DESC, visits DESC";
+	public List<FxZiyuanVO> listFxZiyuan(String keyword, PageInfo pageInfo) {
+		StringBuilder sql = new StringBuilder();
+		List<Object> params = new ArrayList<Object>();
+		sql.append("SELECT * FROM fx_ziyuan WHERE status=1");
+		if(!StringUtil.isNullOrBlank(keyword)){
+			sql.append(" AND fxName like ?");
+			params.add("%"+keyword+"%");
+		}
+		sql.append(" ORDER BY sort DESC,postTime DESC, visits DESC");
 		List<FxZiyuanVO> list = null;
 		try {
-			list = (List<FxZiyuanVO>) Data2PageUtil.queryQuietly(Constants.ALIAS_SLAVE, pageInfo, sql,
-					new BeanListHandler(FxZiyuanVO.class));
+			list = (List<FxZiyuanVO>) Data2PageUtil.queryQuietly(Constants.ALIAS_SLAVE, pageInfo, sql.toString(),
+					new BeanListHandler(FxZiyuanVO.class), params.toArray());
 		} catch (Exception e) {
 			logger.debug("分页查找百度云资源失败!", e);
 		}

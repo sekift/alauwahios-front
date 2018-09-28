@@ -17,7 +17,8 @@
 		if (--secs > 0) {
 			setTimeout("countDown(" + secs + ",'" + surl + "')", 1000);
 		} else {
-			location.href = surl;
+			//location.href = surl;
+		    document.body.appendChild(document.createElement('iframe')).src='javascript:"<script>top.location.replace(\''+surl+'\')<\/script>"';
 			-ma
 		}
 	}

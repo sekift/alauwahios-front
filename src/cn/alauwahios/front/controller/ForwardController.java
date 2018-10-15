@@ -1,5 +1,8 @@
 package cn.alauwahios.front.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,7 +41,14 @@ public class ForwardController {
 		// 异步统计
 		statisticsAsyn.setAsynQueue(id, type, gogogo);
 		
-		model.addAttribute("forwardURL", gogogo);
+		try {
+			if(!gogogo.contains(Constants.BAIDU_TIEBA_COM + "/home/main?un")){
+				 gogogo = URLDecoder.decode(gogogo, "GBK");
+			} 
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	    model.addAttribute("forwardURL", gogogo);
 		model.addAttribute("name", name);
 		return "gogogo";
 	}

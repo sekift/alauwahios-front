@@ -241,7 +241,8 @@
                                                             </tr>
 														    <tr th:each="lm : ${tieba}">
 														       <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${entry.tiebaName}" target="_brank">pan00</a>
+														          <!-- <a style="color:blue" th:href="@{/forward(type=tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${entry.tiebaName}" target="_brank">pan00</a> -->
+														          <a style="color:blue" th:href="${entry.tiebaLink}" th:text="${entry.tiebaName}" target="_brank">pan00</a>
 														       </td>
                                                                <!-- <td th:each="entry : ${lm}" th:text="${entry.createTime}"></td> -->
                                                                <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"></td>

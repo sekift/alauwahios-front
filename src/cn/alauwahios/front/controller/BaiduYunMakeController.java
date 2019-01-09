@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.alauwahios.front.CodeAndMessage;
 import cn.alauwahios.front.Constants;
 import cn.alauwahios.front.service.BaiduYunService;
+import cn.alauwahios.front.util.IPUtil;
 import cn.alauwahios.front.util.JsonReUtil;
 import cn.alauwahios.front.util.UrlUtil;
 import cn.alauwahios.front.validate.ControllerValidate;
@@ -63,11 +64,15 @@ public class BaiduYunMakeController {
 			return listBaiduYun(request, response, pageInfo, model);
 		}
 		panLink = Constants.HOME_PAGE_URL + Constants.SHORT_IDX + panShortLink;
+		String addIp = IPUtil.getUserIP(request);
+		int addPort = IPUtil.getUserPort(request);
 		BaiduYunVO vo = new BaiduYunVO();
 		vo.setPanShortLink(panShortLink);
 		vo.setPanLink(panLink);
 		vo.setShortLink("");
 		vo.setType(1);
+		vo.setAddIp(addIp);
+		vo.setAddPort(addPort);
 		vo.setRemark("");
 		boolean result = baiduYunService.saveBaiduYunMake(vo);
 

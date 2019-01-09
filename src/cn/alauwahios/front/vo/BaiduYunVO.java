@@ -20,6 +20,8 @@ public class BaiduYunVO {
 	private int sort;// `sort` int(11) NOT NULL DEFAULT '0' COMMENT '人工排序，默认为0',
 	private int hot;// `hot` int(11) NOT NULL DEFAULT '0' COMMENT '热度',
 	private int visits;// `visits` int(11) NOT NULL DEFAULT '0' COMMENT '访问次数',
+	private String addIp;//`addIp` varchar(40) DEFAULT '' COMMENT '添加IP',
+	private int addPort;//`addPort` int(11) DEFAULT NULL COMMENT '端口',
 	private String remark;// `remark` varchar(500) DEFAULT '' COMMENT '备用字段',
 	
 	public int getId() {
@@ -94,6 +96,18 @@ public class BaiduYunVO {
 	public void setVisits(int visits) {
 		this.visits = visits;
 	}
+	public String getAddIp() {
+		return addIp;
+	}
+	public void setAddIp(String addIp) {
+		this.addIp = addIp;
+	}
+	public int getAddPort() {
+		return addPort;
+	}
+	public void setAddPort(int addPort) {
+		this.addPort = addPort;
+	}
 	public String getRemark() {
 		return remark;
 	}
@@ -115,6 +129,8 @@ public class BaiduYunVO {
 				+",sort="+sort
 				+",hot="+hot
 				+",visits="+visits
+				+",addIp="+addIp
+				+",addPort="+addPort
 				+",remark="+remark
 				+"]";
 	}

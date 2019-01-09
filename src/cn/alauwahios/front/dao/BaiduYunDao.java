@@ -3,6 +3,7 @@ package cn.alauwahios.front.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,14 +75,20 @@ public class BaiduYunDao {
 			return result;
 		}
 		String sql = "INSERT INTO baidu_yun(panShortLink,panLink,"
-				+ " shortLink,createTime,updateTime,type,status,star,sort,hot,visits,remark)"
-				+ " VALUES(?,?,?,now(),now(),?,1,0,1,1,0,?) ON DUPLICATE KEY UPDATE type=1,updateTime=now(),hot=hot+1";
+				+ " shortLink,createTime,updateTime,type,status,star,sort,hot,visits,addIp,addPort,remark)"
+				+ " VALUES(?,?,?,now(),now(),?,1,0,1,1,0,?,?,?) "
+				+ " ON DUPLICATE KEY UPDATE type=1,updateTime=now(),hot=hot+1,addIp=?,addPort=?";
 		List<Object> params = new ArrayList<Object>();
 		params.add(vo.getPanShortLink());
 		params.add(vo.getPanLink());
 		params.add(vo.getShortLink());
 		params.add(vo.getType());
+		params.add(vo.getAddIp());
+		params.add(vo.getAddPort());
 		params.add(vo.getRemark());
+		
+		params.add(vo.getAddIp());
+		params.add(vo.getAddPort());
 		
 		try {
 			result = DBOperate.update(Constants.ALIAS_MASTER, sql, params.toArray()) > 0;
@@ -110,5 +117,27 @@ public class BaiduYunDao {
 			logger.debug("分页查找云失败!", e);
 		}
 		return list;
+	}
+	
+	/**
+	 * 限制规则： 
+	 * 1 同一个IP，同一个端口，1分钟内的数量
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public boolean limitIpAndPort(String ip) {
+		String sql = "SELECT * FROM baidu_yun "
+				+ " WHERE createTime > DATE_ADD(now(), INTERVAL -1 MINUTE) "
+				+ " AND id=?";
+		BaiduYunVO vo = null;
+		try {
+			vo = (BaiduYunVO) DBOperate.queryQuietly(Constants.ALIAS_SLAVE, sql,
+					new BeanHandler(BaiduYunVO.class), ip);
+		} catch (Exception e) {
+			logger.debug("查找限制失败!", e);
+		}
+		if(vo != null){
+			return true;
+		}
+		return false;
 	}
 }

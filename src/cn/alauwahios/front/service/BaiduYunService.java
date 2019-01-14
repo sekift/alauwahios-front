@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.alauwahios.front.dao.BaiduYunDao;
+import cn.alauwahios.front.util.StringUtil;
 import cn.alauwahios.front.vo.BaiduYunVO;
 import cn.alauwahios.front.vo.PageInfo;
 
@@ -45,15 +46,17 @@ public class BaiduYunService {
 	public boolean saveBaiduYunMake(BaiduYunVO vo){
 		// TODO 添加防刷机制 链接码校验
 		// 同一个IP 1分钟一个
-		if(baiduYunDao.limitIpAndPort(vo.getAddIp())){
-			return true;
+		if (!StringUtil.isNullOrBlank(vo.getAddIp())) {
+			if (baiduYunDao.limitIpAndPort(vo.getAddIp())) {
+				return true;
+			}
 		}
 		
 		String[] ling = {"b","c","d","e","g","h","i","j","k","m","n","o","p","q","r","s"};
 		String[] lingb = {"p","q","r"};
-		String[] lingc = {"2","3","4","p","O","Q","S","V","X"};
-		String[] lingd = {"4","6","9","o","y","B","D","F","f","G","H","l","N","n","r","s","T","W","w","x"};
-		String[] linge = {"f","g","l","S","T","U"};
+		String[] lingc = {"2","3","4","p","N","O","Q","S","V","X"};
+		String[] lingd = {"4","6","9","o","y","B","D","F","f","G","H","l","N","n","r","s","Q","T","W","w","x","y"};
+		String[] linge = {"a","f","g","i","k","l","S","T","U"};
 		String[] lingg = {"f","g","h"};
 		String[] lingh = {"s","t","u"};
 		String[] lingi = {"5","6","7"};

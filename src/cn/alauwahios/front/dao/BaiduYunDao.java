@@ -127,7 +127,7 @@ public class BaiduYunDao {
 	public boolean limitIpAndPort(String ip) {
 		String sql = "SELECT * FROM baidu_yun "
 				+ " WHERE createTime > DATE_ADD(now(), INTERVAL -1 MINUTE) "
-				+ " AND id=?";
+				+ " AND addIp=?";
 		BaiduYunVO vo = null;
 		try {
 			vo = (BaiduYunVO) DBOperate.queryQuietly(Constants.ALIAS_SLAVE, sql,

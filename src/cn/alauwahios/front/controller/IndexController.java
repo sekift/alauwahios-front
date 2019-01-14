@@ -11,10 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cn.alauwahios.front.redis.RateLimitService;
 import cn.alauwahios.front.service.BaiduTiebaService;
 import cn.alauwahios.front.service.BaiduWangpanService;
 import cn.alauwahios.front.service.BaiduYunService;
 import cn.alauwahios.front.service.FxZiyuanService;
+import cn.alauwahios.front.util.IPUtil;
 import cn.alauwahios.front.vo.BaiduTiebaVO;
 import cn.alauwahios.front.vo.BaiduWangpanVO;
 import cn.alauwahios.front.vo.BaiduYunVO;
@@ -42,6 +44,9 @@ public class IndexController {
 	@Autowired
 	private FxZiyuanService fxZiyuanService;
 	
+	//访问IP请求次数限制3秒1次
+	private static final RateLimitService RLS_VISIT_IP = RateLimitService.getInstance("USER_VISIT_INDEX_IP").addLimit(3, 1).addLimit(60, 30);
+
 	/**
 	 * 刚打开
 	 * 
@@ -54,6 +59,12 @@ public class IndexController {
 	@RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
 	public String listBaiduTieba(HttpServletRequest request, HttpServletResponse response, PageInfo pageInfo,
 			Model model) {
+		
+		//访问IP请求次数限制统计
+		if(!RLS_VISIT_IP.check(IPUtil.getUserIP(request))){
+			return "index";
+		}
+
 		List<BaiduTiebaVO> tieba = baiduTiebaService.listBaiduTieba(pageInfo);
 		model.addAttribute("tieba", tieba);
 		List<BaiduWangpanVO> wangpan = baiduWangpanService.listBaiduWangpan(pageInfo);

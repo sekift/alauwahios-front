@@ -15,9 +15,11 @@ public class Constants {
 	
 	// 主库
 	public static final String ALIAS_MASTER = "alauwahios_master";
+	public static final String ALIAS_MASTER_FLAG = "w";
 	
 	// 从库
 	public static final String ALIAS_SLAVE = "alauwahios_slave";
+	public static final String ALIAS_SLAVE_FLAG = "r";
 	
 	// 类别默认为0
 	public static final int DEFAULT_TYPE = 0;

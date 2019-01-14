@@ -12,6 +12,9 @@ import java.sql.Statement;
 import java.util.Scanner;
 import java.util.zip.ZipFile;
 
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
 /**
  * 关闭资源的类
  * 
@@ -205,6 +208,47 @@ public class CloseUtil {
 			} catch (Exception ex) { /* 消除异常 */
 			}
 			rsc = null;
+		}
+	}
+	
+    /**
+     * 关闭jedis资源对象
+     * 备注: 如果资源对象不为null, 关闭资源,不抛出任何异常
+     * @param rsc -- 资源对象
+     */
+	/**
+	 * 连接失败时调用回收资源
+	 * 
+	 * @param jp
+	 * @param r
+	 */
+	@SuppressWarnings("deprecation")
+	public static void returnBrokenResourceSilently(JedisPool jp, Jedis r) {
+		if (null != jp && null != r) {
+			try {
+				jp.returnBrokenResource(r);
+			} catch (Exception e) {
+				/* 消除异常 */ 
+			}
+			r = null;
+		}
+	}
+
+	/**
+	 * 回收资源
+	 * 
+	 * @param jp
+	 * @param r
+	 */
+	@SuppressWarnings("deprecation")
+	public static void returnResourceSilently(JedisPool jp, Jedis r) {
+		if (null != jp && null != r) {
+			try {
+				jp.returnResource(r);
+			} catch (Exception e) {
+				/* 消除异常 */ 
+			}
+			r = null;
 		}
 	}
 }

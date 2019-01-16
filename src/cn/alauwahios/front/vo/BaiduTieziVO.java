@@ -1,5 +1,6 @@
 package cn.alauwahios.front.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,11 @@ import java.util.Date;
  * @author Administrator
  *
  */
-public class BaiduTieziVO {
+public class BaiduTieziVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2837903834265507916L;
 	private int id;// `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '递增id',
 	private long tieziId;// bigint(22) NOT NULL DEFAULT '0' COMMENT '帖子ID',
 	private String tieziName;// `tieziName` varchar(500) DEFAULT '' COMMENT '帖子文字',

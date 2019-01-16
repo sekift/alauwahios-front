@@ -1,5 +1,6 @@
 package cn.alauwahios.front.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,11 @@ import java.util.Date;
  * @author Administrator
  *
  */
-public class BaiduYunVO {
+public class BaiduYunVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1126962791524056739L;
 	private int id;// `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '递增id',
 	private String panShortLink;// `panShortLink` varchar(50) NOT NULL DEFAULT '' COMMENT '网盘短链接',
 	private String panLink;// `panLink` varchar(200) NOT NULL DEFAULT '' COMMENT '网盘链接',

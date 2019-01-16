@@ -109,7 +109,7 @@ public class BaiduYunDao {
 		String sql = "SELECT * FROM baidu_yun "
 				+ " WHERE updateTime > DATE_ADD(now(), INTERVAL -6 HOUR) AND createTime > DATE_ADD(updateTime, INTERVAL -4 HOUR)"
 				+ " AND status= 1 AND type=1 ORDER BY sort DESC, updateTime DESC, hot ASC";
-		List<BaiduYunVO> list = null;
+		List<BaiduYunVO> list = new ArrayList<BaiduYunVO>();
 		try {
 			list = (List<BaiduYunVO>) Data2PageUtil.queryQuietly(Constants.ALIAS_SLAVE, pageInfo, sql,
 					new BeanListHandler(BaiduYunVO.class));

@@ -58,6 +58,18 @@ public class Constants {
 	public static final String BAIDU_TIEBA_F = "/f?kw=";
 	public static final String BAIDU_TIEBA_PATH = HTTPS_MARK + BAIDU_TIEBA_COM + BAIDU_TIEBA_F;
 	
+	//缓存前缀
+	public static final String CACHE_PRE = "cache_pan00_";
+	
+	//缓存key和time
+	public static final String CACHE_BAIDUYUNMAKE_KEY = "baidu_yun_make";
+	public static final int CACHE_BAIDUYUNMAKE_TIME = 10;
+	
+	public static final String CACHE_BAIDUYUN_KEY = "baidu_yun";
+	public static final int CACHE_BAIDUYUN_TIME = 10;
+
+	public static final String CACHE_BAIDUWANGPAN_KEY = "baidu_wangpan";
+	public static final int CACHE_BAIDUWANGPAN_TIME = 10;
 	
 	/*static{
 		if(test){

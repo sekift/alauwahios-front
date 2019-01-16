@@ -65,16 +65,16 @@ public class IndexController {
 			return "index";
 		}
 
-		List<BaiduTiebaVO> tieba = baiduTiebaService.listBaiduTieba(pageInfo);
-		model.addAttribute("tieba", tieba);
+		List<BaiduYunVO> make= baiduYunService.listBaiduYunMake(pageInfo, true);
+		model.addAttribute("make", make);
+		List<BaiduYunVO> yun = baiduYunService.listBaiduYun(pageInfo, true);
+		model.addAttribute("yun", yun);
 		List<BaiduWangpanVO> wangpan = baiduWangpanService.listBaiduWangpan(pageInfo);
 		model.addAttribute("wangpan", wangpan);
-		List<BaiduYunVO> yun = baiduYunService.listBaiduYun(pageInfo);
-		model.addAttribute("yun", yun);
-		List<BaiduYunVO> make= baiduYunService.listBaiduYunMake(pageInfo);
-		model.addAttribute("make", make);
 		List<FxZiyuanVO> ziyuan = fxZiyuanService.listFxZiyuan("", pageInfo);
 		model.addAttribute("ziyuan", ziyuan);
+		List<BaiduTiebaVO> tieba = baiduTiebaService.listBaiduTieba(pageInfo);
+		model.addAttribute("tieba", tieba);
 		//List<BaiduTieziVO> tiezi = baiduTieziService.listBaiduTiezi(pageInfo);
 		//model.addAttribute("tiezi", tiezi);
 		//List<InternetCelebrityVO> star = internetCelebrityService.listInternetCelebrity(pageInfo);

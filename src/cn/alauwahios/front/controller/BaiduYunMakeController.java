@@ -87,7 +87,7 @@ public class BaiduYunMakeController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listBaiduYun(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
-		List<BaiduYunVO> result = baiduYunService.listBaiduYunMake(pageInfo);
+		List<BaiduYunVO> result = baiduYunService.listBaiduYunMake(pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "make";
@@ -106,7 +106,7 @@ public class BaiduYunMakeController {
 	public String searchPost(
 			PageInfo pageInfo,
 			HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-		List<BaiduYunVO> result = baiduYunService.listBaiduYunMake(pageInfo);
+		List<BaiduYunVO> result = baiduYunService.listBaiduYunMake(pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "make";

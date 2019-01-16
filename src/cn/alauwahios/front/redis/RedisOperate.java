@@ -12,6 +12,9 @@ import redis.clients.jedis.JedisPool;
  */
 public class RedisOperate {
 	
+	public RedisOperate() {
+	}
+	
 	static cn.alauwahios.front.redis.RedisPoolService redisPool = cn.alauwahios.front.server.ServiceFactory
 			.getService("FwRedisPoolService");
 	
@@ -21,7 +24,7 @@ public class RedisOperate {
      * @param v
      * @param t
      */
-    public void insert(String k, String v, int t) {
+    public static void set(String k, String v, int t) {
     	JedisPool jp = null;
     	Jedis jd = null;
     	try {
@@ -39,7 +42,7 @@ public class RedisOperate {
      *  删除对象
      * @param k
      */
-    public void deleteByKey(String k) {
+    public static void deleteByKey(String k) {
     	JedisPool jp = null;
     	Jedis jd = null;
     	try {
@@ -58,7 +61,7 @@ public class RedisOperate {
      * @param k
      * @param v
      */
-    public void updateByKey(String k, String v) {
+    public static void updateByKey(String k, String v) {
     	JedisPool jp = null;
     	Jedis jd = null;
     	try {
@@ -77,7 +80,7 @@ public class RedisOperate {
      * @param k
      * @return
      */
-    public String getValueByKey(String k) {
+    public static String getValueByKey(String k) {
     	JedisPool jp = null;
     	Jedis jd = null;
     	String result = null;

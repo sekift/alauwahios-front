@@ -30,7 +30,7 @@ public class BaiduYunController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listBaiduYun(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
-		List<BaiduYunVO> result = baiduYunService.listBaiduYun(pageInfo);
+		List<BaiduYunVO> result = baiduYunService.listBaiduYun(pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "yun";
@@ -49,7 +49,7 @@ public class BaiduYunController {
 	public String searchPost(
 			PageInfo pageInfo,
 			HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-		List<BaiduYunVO> result = baiduYunService.listBaiduYun(pageInfo);
+		List<BaiduYunVO> result = baiduYunService.listBaiduYun(pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "yun";

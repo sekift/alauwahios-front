@@ -20,8 +20,7 @@ import redis.clients.jedis.JedisPool;
  */
 public final class RateLimitService {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(RateLimitService.class);
+	private static final Logger logger = LoggerFactory.getLogger(RateLimitService.class);
 
 	static cn.alauwahios.front.redis.RedisPoolService rsm = cn.alauwahios.front.server.ServiceFactory
 			.getService("FwRedisPoolService");

@@ -1,5 +1,6 @@
 package cn.alauwahios.front.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,11 @@ import java.util.Date;
  * @author sekift
  *
  */
-public class InternetCelebrityVO {
+public class InternetCelebrityVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6807263950643141381L;
 	private int id;// `id` int(11) NOT NULL COMMENT '递增',
 	private String authorId;//`authorId` varchar(50) DEFAULT NULL COMMENT '网红id',
 	private String authorName;// `authorName` varchar(100) DEFAULT NULL COMMENT '网红名称',

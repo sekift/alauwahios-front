@@ -1,8 +1,13 @@
 package cn.alauwahios.front.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class FxZiyuanVO {
+public class FxZiyuanVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4290416577639670267L;
 	private int id;	  //`id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
 	private String fxKW;		//`fxKW` varchar(200) NOT NULL DEFAULT '' COMMENT '关键词索引',
 	private String fxName;	//`fxName` varchar(500) DEFAULT '' COMMENT '云视频名字',

@@ -69,11 +69,11 @@ public class IndexController {
 		model.addAttribute("make", make);
 		List<BaiduYunVO> yun = baiduYunService.listBaiduYun(pageInfo, true);
 		model.addAttribute("yun", yun);
-		List<BaiduWangpanVO> wangpan = baiduWangpanService.listBaiduWangpan(pageInfo);
+		List<BaiduWangpanVO> wangpan = baiduWangpanService.listBaiduWangpan(pageInfo, true);
 		model.addAttribute("wangpan", wangpan);
-		List<FxZiyuanVO> ziyuan = fxZiyuanService.listFxZiyuan("", pageInfo);
+		List<FxZiyuanVO> ziyuan = fxZiyuanService.listFxZiyuan("", pageInfo, true);
 		model.addAttribute("ziyuan", ziyuan);
-		List<BaiduTiebaVO> tieba = baiduTiebaService.listBaiduTieba(pageInfo);
+		List<BaiduTiebaVO> tieba = baiduTiebaService.listBaiduTieba(pageInfo, true);
 		model.addAttribute("tieba", tieba);
 		//List<BaiduTieziVO> tiezi = baiduTieziService.listBaiduTiezi(pageInfo);
 		//model.addAttribute("tiezi", tiezi);

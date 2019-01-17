@@ -41,6 +41,6 @@ public class BaiduTiebaServiceTest {
 	@Test
 	public void testListBaiduTieba() {
 		PageInfo pageInfo = new PageInfo();
-		baiduTiebaService.listBaiduTieba(pageInfo);
+		baiduTiebaService.listBaiduTieba(pageInfo, true);
 	}
 }

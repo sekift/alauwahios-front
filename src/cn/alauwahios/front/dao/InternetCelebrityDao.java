@@ -49,7 +49,7 @@ public class InternetCelebrityDao {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<InternetCelebrityVO> listInternetCelebrity(PageInfo pageInfo) {
 		String sql = "SELECT * FROM internet_celebrity WHERE status= 1 ORDER BY sort DESC, updateTime DESC, visits DESC";
-		List<InternetCelebrityVO> list = null;
+		List<InternetCelebrityVO> list = new ArrayList<InternetCelebrityVO>();
 		try {
 			list = (List<InternetCelebrityVO>) Data2PageUtil.queryQuietly(Constants.ALIAS_SLAVE, pageInfo, sql, new BeanListHandler(InternetCelebrityVO.class));
 		} catch (Exception e) {

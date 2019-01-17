@@ -30,7 +30,7 @@ public class BaiduWangpanController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listBaiduWangpan(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
-		List<BaiduWangpanVO> result = baiduWangpanService.listBaiduWangpan(pageInfo);
+		List<BaiduWangpanVO> result = baiduWangpanService.listBaiduWangpan(pageInfo, true);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "wangpan";
@@ -49,7 +49,7 @@ public class BaiduWangpanController {
 	public String searchPost(
 			PageInfo pageInfo,
 			HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-		List<BaiduWangpanVO> result = baiduWangpanService.listBaiduWangpan(pageInfo);
+		List<BaiduWangpanVO> result = baiduWangpanService.listBaiduWangpan(pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "wangpan";

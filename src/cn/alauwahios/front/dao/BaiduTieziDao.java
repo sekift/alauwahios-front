@@ -49,7 +49,7 @@ public class BaiduTieziDao {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<BaiduTieziVO> listBaiduTiezi(PageInfo pageInfo) {
 		String sql = "SELECT * FROM baidu_tiezi WHERE status= 1 ORDER BY sort DESC, updateTime DESC, visits DESC";
-		List<BaiduTieziVO> list = null;
+		List<BaiduTieziVO> list = new ArrayList<BaiduTieziVO>();
 		try {
 			list = (List<BaiduTieziVO>) Data2PageUtil.queryQuietly(Constants.ALIAS_SLAVE, pageInfo, sql, new BeanListHandler(BaiduTieziVO.class));
 		} catch (Exception e) {

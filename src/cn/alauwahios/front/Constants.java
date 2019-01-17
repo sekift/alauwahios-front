@@ -63,13 +63,19 @@ public class Constants {
 	
 	//缓存key和time
 	public static final String CACHE_BAIDUYUNMAKE_KEY = "baidu_yun_make";
-	public static final int CACHE_BAIDUYUNMAKE_TIME = 10;
+	public static final int CACHE_BAIDUYUNMAKE_TIME = 30;
 	
 	public static final String CACHE_BAIDUYUN_KEY = "baidu_yun";
-	public static final int CACHE_BAIDUYUN_TIME = 10;
+	public static final int CACHE_BAIDUYUN_TIME = 20;
 
 	public static final String CACHE_BAIDUWANGPAN_KEY = "baidu_wangpan";
-	public static final int CACHE_BAIDUWANGPAN_TIME = 10;
+	public static final int CACHE_BAIDUWANGPAN_TIME = 2 * 60;
+	
+	public static final String CACHE_FXZIYUAN_KEY = "fx_ziyuan";
+	public static final int CACHE_FXZIYUAN_TIME = 20 * 60;
+
+	public static final String CACHE_BAIDUTIEBA_KEY = "baidu_tieba";
+	public static final int CACHE_BAIDUTIEBA_TIME = 5 * 60;
 	
 	/*static{
 		if(test){

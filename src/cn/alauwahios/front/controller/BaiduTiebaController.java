@@ -38,7 +38,7 @@ public class BaiduTiebaController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listBaiduTieba(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
-		List<BaiduTiebaVO> result = baiduTiebaService.listBaiduTieba(pageInfo);
+		List<BaiduTiebaVO> result = baiduTiebaService.listBaiduTieba(pageInfo, true);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "tieba";
@@ -57,7 +57,7 @@ public class BaiduTiebaController {
 	public String searchPost(
 			PageInfo pageInfo,
 			HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-		List<BaiduTiebaVO> result = baiduTiebaService.listBaiduTieba(pageInfo);
+		List<BaiduTiebaVO> result = baiduTiebaService.listBaiduTieba(pageInfo, true);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "tieba";

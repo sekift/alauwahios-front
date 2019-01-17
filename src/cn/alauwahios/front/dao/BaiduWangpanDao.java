@@ -1,5 +1,6 @@
 package cn.alauwahios.front.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -47,18 +48,18 @@ public class BaiduWangpanDao {
 	 * 1 postTime要在6小时内，createTime与updateTime在4小时内 
 	 * 2 先按sort、再按postTime、再按updateTime排序、再按hot排序
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	//@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<BaiduWangpanVO> listBaiduWangpan(PageInfo pageInfo) {
-		String sql = "SELECT * FROM baidu_wangpan "
-				+ " WHERE postTime > DATE_ADD(now(), INTERVAL -6 HOUR) AND createTime > DATE_ADD(updateTime, INTERVAL -4 HOUR)"
-				+ " AND status= 1 ORDER BY sort DESC, postTime DESC, updateTime DESC, hot ASC";
-		List<BaiduWangpanVO> list = null;
-		try {
-			list = (List<BaiduWangpanVO>) Data2PageUtil.queryQuietly(Constants.ALIAS_SLAVE, pageInfo, sql,
-					new BeanListHandler(BaiduWangpanVO.class));
-		} catch (Exception e) {
-			logger.debug("分页查找网盘失败!", e);
-		}
+//		String sql = "SELECT * FROM baidu_wangpan "
+//				+ " WHERE postTime > DATE_ADD(now(), INTERVAL -6 HOUR) AND createTime > DATE_ADD(updateTime, INTERVAL -4 HOUR)"
+//				+ " AND status= 1 ORDER BY sort DESC, postTime DESC, updateTime DESC, hot ASC";
+		List<BaiduWangpanVO> list = new ArrayList<BaiduWangpanVO>();
+//		try {
+//			list = (List<BaiduWangpanVO>) Data2PageUtil.queryQuietly(Constants.ALIAS_SLAVE, pageInfo, sql,
+//					new BeanListHandler(BaiduWangpanVO.class));
+//		} catch (Exception e) {
+//			logger.debug("分页查找网盘失败!", e);
+//		}
 		return list;
 	}
 

@@ -63,7 +63,7 @@ public class FxZiyuanDao {
 			params.add("%"+keyword+"%");
 		}
 		sql.append(" ORDER BY sort DESC,postTime DESC, visits DESC");
-		List<FxZiyuanVO> list = null;
+		List<FxZiyuanVO> list = new ArrayList<FxZiyuanVO>();
 		try {
 			list = (List<FxZiyuanVO>) Data2PageUtil.queryQuietly(Constants.ALIAS_SLAVE, pageInfo, sql.toString(),
 					new BeanListHandler(FxZiyuanVO.class), params.toArray());

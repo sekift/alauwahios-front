@@ -56,7 +56,7 @@ public class BaiduTiebaDao {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<BaiduTiebaVO> listBaiduTieba(PageInfo pageInfo) {
 		String sql = "SELECT * FROM baidu_tieba WHERE status= 1 ORDER BY sort DESC, hot DESC, visits DESC, updateTime DESC";
-		List<BaiduTiebaVO> list = null;
+		List<BaiduTiebaVO> list = new ArrayList<BaiduTiebaVO>();
 		try {
 			list = (List<BaiduTiebaVO>) Data2PageUtil.queryQuietly(Constants.ALIAS_SLAVE, pageInfo, sql,
 					new BeanListHandler(BaiduTiebaVO.class));

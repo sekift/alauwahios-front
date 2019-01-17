@@ -39,7 +39,7 @@ public class FxZiyuanController {
 	public String listZiyuan(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
 		model.addAttribute("keyword", "");
-		List<FxZiyuanVO> result = fxZiyuanService.listFxZiyuan("", pageInfo);
+		List<FxZiyuanVO> result = fxZiyuanService.listFxZiyuan("", pageInfo, true);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "ziyuan";
@@ -60,7 +60,7 @@ public class FxZiyuanController {
 			PageInfo pageInfo,
 			HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 		model.addAttribute("keyword", keyword);
-		List<FxZiyuanVO> result = fxZiyuanService.listFxZiyuan(keyword, pageInfo);
+		List<FxZiyuanVO> result = fxZiyuanService.listFxZiyuan(keyword, pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "ziyuan";

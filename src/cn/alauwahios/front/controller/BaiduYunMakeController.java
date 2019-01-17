@@ -87,7 +87,7 @@ public class BaiduYunMakeController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listBaiduYun(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
-		List<BaiduYunVO> result = baiduYunService.listBaiduYunMake(pageInfo, false);
+		List<BaiduYunVO> result = baiduYunService.listBaiduYunMake(pageInfo, true);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "make";

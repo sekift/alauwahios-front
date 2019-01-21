@@ -7,10 +7,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author wudie
- * 
- */
 public class Extensions {
 	
 	private static Logger logger = LoggerFactory.getLogger(Extensions.class);

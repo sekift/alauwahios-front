@@ -196,7 +196,6 @@ public final class RateLimitService {
 
 	/**
 	 * 设置缓存时间失败时，直接重试删除key 当然这个方法也有可能删除失败
-	 * 后台提供页面：http://admin.my.tianya.cn/util/redis/info.jsp
 	 * 可以使用这个页面，查看一台redis服务器中没有过期时间的key，然后进行手工删除操作
 	 * 
 	 * @param cacheKey

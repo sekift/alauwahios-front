@@ -39,7 +39,7 @@ public class FxZiyuanController {
 	public String listZiyuan(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
 		model.addAttribute("keyword", "");
-		List<FxZiyuanVO> result = fxZiyuanService.listFxZiyuan("", pageInfo, true);
+		List<FxZiyuanVO> result = fxZiyuanService.listFxZiyuan("", pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "ziyuan";

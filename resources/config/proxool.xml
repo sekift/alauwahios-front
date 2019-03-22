@@ -13,8 +13,8 @@
     </driver-properties>
     <house-keeping-sleep-time>30000</house-keeping-sleep-time>
     <house-keeping-test-sql>select 0</house-keeping-test-sql>
-    <minimum-connection-count>1</minimum-connection-count>
-    <maximum-connection-count>10</maximum-connection-count>
+    <minimum-connection-count>10</minimum-connection-count>
+    <maximum-connection-count>50</maximum-connection-count>
     <maximum-connection-lifetime>1440000</maximum-connection-lifetime>
     <simultaneous-build-throttle>1</simultaneous-build-throttle>
     <recently-started-threshold>60000</recently-started-threshold>
@@ -37,8 +37,8 @@
 		</driver-properties>
 		<house-keeping-sleep-time>30000</house-keeping-sleep-time>
 		<house-keeping-test-sql>select 0</house-keeping-test-sql>
-		<minimum-connection-count>1</minimum-connection-count>
-		<maximum-connection-count>5</maximum-connection-count>
+		<minimum-connection-count>10</minimum-connection-count>
+		<maximum-connection-count>50</maximum-connection-count>
 		<maximum-connection-lifetime>14400000</maximum-connection-lifetime>
 		<simultaneous-build-throttle>1</simultaneous-build-throttle>
 		<recently-started-threshold>60000</recently-started-threshold>

@@ -37,11 +37,11 @@ public class BaiduWangpanService {
 		return baiduWangpanDao.cancelSort(id);
 	}
 
-	public List<BaiduWangpanVO> listBaiduWangpan(PageInfo pageInfo, boolean userCache) {
+	public List<BaiduWangpanVO> listBaiduWangpan(PageInfo pageInfo, boolean useCache) {
 		// TODO 添加防刷机制
 		// 添加缓存
 		List<BaiduWangpanVO> list = null;
-		if(userCache){
+		if(useCache){
 			list = AlauwahiosRedis.getInstance().getBaiduWangpan(Constants.CACHE_BAIDUWANGPAN_KEY);
 		}
 		if(null == list) {
@@ -51,7 +51,7 @@ public class BaiduWangpanService {
 			    		list, Constants.CACHE_BAIDUWANGPAN_TIME);
 			}
 		}
-		return baiduWangpanDao.listBaiduWangpan(pageInfo);
+		return list;
 	}
 
 }

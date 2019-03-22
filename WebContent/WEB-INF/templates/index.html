@@ -29,9 +29,14 @@
              <div class="container">
 				        <div class="row">
                     <div class="main_features">
-						                <div class="f_item_text" style="text-align:center;">
+                    
+<script src='https://www.yzaosite.com/yezi.php?id=22683'></script>
+<script src='https://www.yzaosite.com/yezi.php?id=22687'></script>
+<script src='https://www.yzaosite.com/yezi.php?id=22693'></script>
+
+						           <!--     <div class="f_item_text" style="text-align:center;">
 							                    <h3>盘零零 - 中国第零盘</h3>
-						                </div>
+						                </div>-->
 						
 						    <section class="panel" style="">
                                         <div class="panel-body">
@@ -75,58 +80,6 @@
                                         </div>
                                     </section>
                                     
-                                    						<section class="panel" style="">
-                                        <div class="panel-body">
-                                            <div class="tab-content">
-                                                <div id="about-2" class="tab-pane active">
-                                                    <div class="adv-table">
-                                                        <div class="clearfix">
-                                                            <div style="color:red;">
-                                                                   <h3>2.网盘链接，更多请点击：<a style="color:blue" th:href="@{/wangpan}">网盘链接</a></h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="space15"></div>
-                                                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
-                                                            <thead>
-                                                            <tr>
-                                                                <th width="10%">链接</th>
-                                                                <th width="10%">帖子</th>
-                                                                <th width="30%">贴吧</th>
-                                                                <th width="20%">发表</th>
-                                                                <th width="20%">更新</th>
-                                                                <th width="10%">访问</th>
-                                                                <!-- <th width="6%">点赞数</th> -->
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr class="odd">
-                                                               <td style="text-align:center" valign="top" colspan="6" th:if="${#lists.isEmpty(wangpan)}" th:text="没有数据，请稍后刷新。"></td>
-                                                            </tr>
-														    <tr th:each="lm : ${wangpan}">
-														       <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=wangpan,id=${entry.id},name=${entry.replyName},gogogo=${entry.panLink})}" th:text="${entry.panShortLink}" target="_brank">pan00</a>
-														       </td>
-														       <td th:each="entry : ${lm}">
-														          <a style="color:blue" th:href="@{/forward(type=wangpan,id=${entry.id},name=${entry.replyName},gogogo=${entry.replyLink})}" th:text="${#strings.length(entry.replyName) le 3?entry.replyName:#strings.substring(entry.replyName,0,2)+'..'}" target="_brank">pan00</a>
-														       </td>
-														       <td th:each="entry : ${lm}">
-														          <!-- <a style="color:blue" th:href="@{/forward(type=wangpan_tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${#strings.length(entry.tiebaName) le 3?entry.tiebaName:#strings.substring(entry.tiebaName,0,2)+'..'}" target="_brank">pan00</a>
-														           -->
-														           <a style="color:blue" th:href="${entry.tiebaLink}" th:text="${#strings.length(entry.tiebaName) le 3?entry.tiebaName:#strings.substring(entry.tiebaName,0,2)+'..'}" target="_brank">pan00</a>
-														       </td>
-                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.postTime, 'MM-dd HH:mm')}"> </td>
-                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"> </td>
-                                                               <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
-                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td> -->
-													        </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                    
                            <section class="panel" style="">
                                         <div class="panel-body">
                                             <div class="tab-content">
@@ -134,7 +87,7 @@
                                                     <div class="adv-table">
                                                         <div class="clearfix">
                                                             <div style="color:red;">
-                                                                    <h3>3.云盘链接，更多请点击：<a style="color:blue" th:href="@{/yun}">云盘链接</a></h3>
+                                                                    <h3>2.云盘链接，更多请点击：<a style="color:blue" th:href="@{/yun}">云盘链接</a></h3>
                                                             </div>
                                                         </div>
                                                         <div class="space15"></div>
@@ -177,14 +130,14 @@
                                                     <div class="adv-table">
                                                         <div class="clearfix">
                                                             <div style="color:red;">
-                                                               <h3>4.百云资源，更多请点击：<a style="color:blue" th:href="@{/ziyuan}">百云资源</a></h3>
+                                                               <h3>3.百云资源，更多请点击：<a style="color:blue" th:href="@{/ziyuan}">百云资源</a></h3>
                                                             </div>
                                                         </div>
                                                         <div class="space15"></div>
                                                         <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
                                                             <thead>
                                                             <tr>
-                                                                <th width="30%">链接</th>
+                                                                <th width="50%">链接</th>
                                                                 <!-- <th width="20%">发表</th> -->
                                                                 <th width="30%">更新</th>
                                                                 <!-- <th width="20%">热门</th> -->
@@ -213,6 +166,60 @@
                                             </div>
                                         </div>
                                     </section>
+                                    
+                                <script src='https://www.yzaosite.com/yezi.php?id=22687'></script>
+                                    
+                                                                        						<section class="panel" style="">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div id="about-2" class="tab-pane active">
+                                                    <div class="adv-table">
+                                                        <div class="clearfix">
+                                                            <div style="color:red;">
+                                                                   <h3>4.链接导航，更多请点击：<a style="color:blue" th:href="@{/daohang}">无限搜索</a></h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="space15"></div>
+                                                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table1" width="100%">
+                                                            <thead>
+                                                            <tr>
+                                                                <th width="50%">链接</th>
+                                                                <!-- <th width="10%">帖子</th> -->
+                                                                <!-- <th width="30%">贴吧</th> -->
+                                                                <!-- <th width="20%">发表</th> -->
+                                                                <th width="30%">更新</th>
+                                                                <th width="20%">访问</th>
+                                                                <!-- <th width="6%">点赞数</th> -->
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="odd">
+                                                               <td style="text-align:center" valign="top" colspan="6" th:if="${#lists.isEmpty(wangzhiDaohang)}" th:text="没有数据，请稍后刷新。"></td>
+                                                            </tr>
+														    <tr th:each="lm : ${wangzhiDaohang}">
+														       <!-- <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=wangzhi_daohang,id=${entry.id},name=${entry.replyName},gogogo=${entry.panLink})}" th:text="${entry.panShortLink}" target="_brank">pan00</a>
+														       </td> -->
+														       <td th:each="entry : ${lm}">
+														          <a style="color:blue" th:href="@{/forward(type=wangzhi_daohang,id=${entry.id},name=${entry.fxName},gogogo=${entry.fxLink})}" th:text="${#strings.length(entry.fxName) le 16?entry.fxName:#strings.substring(entry.fxName,0,15)+'..'}" target="_brank">pan00</a>
+														       </td>
+														       <!-- <td th:each="entry : ${lm}">
+														           <a style="color:blue" th:href="@{/forward(type=wangpan_tieba,id=${entry.id},name=${entry.tiebaName},gogogo=${entry.tiebaLink})}" th:text="${#strings.length(entry.tiebaName) le 3?entry.tiebaName:#strings.substring(entry.tiebaName,0,2)+'..'}" target="_brank">pan00</a>
+														           <a style="color:blue" th:href="${entry.tiebaLink}" th:text="${#strings.length(entry.tiebaName) le 3?entry.tiebaName:#strings.substring(entry.tiebaName,0,2)+'..'}" target="_brank">pan00</a>
+														       </td>
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.postTime, 'MM-dd HH:mm')}"> </td> -->
+                                                               <td th:each="entry : ${lm}" th:text="${#dates.format(entry.updateTime, 'MM-dd HH:mm')}"> </td>
+                                                               <td th:each="entry : ${lm}" th:text="${entry.visits}"> </td>
+                                                               <!-- <td th:each="entry : ${lm}" th:text="${entry.star}"> </td> -->
+													        </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    
                                 <section class="panel" style="">
                                         <div class="panel-body">
                                             <div class="tab-content">
@@ -365,6 +372,7 @@
                 <a href="#"><i class="fa fa-chevron-up"></i></a>
             </div>-->
             <!-- End off scroll up -->
+            <script src='https://www.yzaosite.com/yezi.php?id=22692'></script>
             
             <div th:include="footer :: copy" ></div>
         </div>

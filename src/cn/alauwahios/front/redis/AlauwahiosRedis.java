@@ -8,9 +8,12 @@ import org.slf4j.LoggerFactory;
 import cn.alauwahios.front.Constants;
 import cn.alauwahios.front.util.JsonUtil;
 import cn.alauwahios.front.vo.BaiduTiebaVO;
+import cn.alauwahios.front.vo.BaiduTieziVO;
 import cn.alauwahios.front.vo.BaiduWangpanVO;
 import cn.alauwahios.front.vo.BaiduYunVO;
 import cn.alauwahios.front.vo.FxZiyuanVO;
+import cn.alauwahios.front.vo.InternetCelebrityVO;
+import cn.alauwahios.front.vo.WangzhiDaohangVO;
 
 /**
  * redis业务操作类
@@ -140,6 +143,31 @@ public class AlauwahiosRedis {
 		}
 	}
 	
+	/**
+	 * baidu_tiezi
+	 */
+	public List<BaiduTieziVO> getBaiduTiezi(String key){
+		List<BaiduTieziVO> list  = null;
+		try {
+			String value = RedisOperate.getValueByKey(Constants.CACHE_PRE + key);
+			if(null != value) {
+				list = (List<BaiduTieziVO>) JsonUtil.toBeanList(value, BaiduTieziVO.class);
+			}
+		} catch (Exception e) {
+			logger.error("[缓存错误]获取缓存错误：", e);
+		}
+		return list;
+	}
+	
+	public void setBaiduTiezi(String key, List<BaiduTieziVO> list, int time){
+		try {
+			String value = JsonUtil.toJson(list);
+			RedisOperate.set(Constants.CACHE_PRE + key, value, time);
+		} catch (Exception e) {
+			logger.error("[缓存错误]设置缓存错误：", e);
+		}
+	}
+	
 	public void delPan(String key){
 		try {
 			RedisOperate.deleteByKey(Constants.CACHE_PRE + key);
@@ -148,5 +176,53 @@ public class AlauwahiosRedis {
 		}
 	}
 	
-
+	/**
+	 * wangzhi_daohang
+	 */
+	public List<WangzhiDaohangVO> getWangzhiDaohang(String key){
+		List<WangzhiDaohangVO> list  = null;
+		try {
+			String value = RedisOperate.getValueByKey(Constants.CACHE_PRE + key);
+			if(null != value) {
+				list = (List<WangzhiDaohangVO>) JsonUtil.toBeanList(value, WangzhiDaohangVO.class);
+			}
+		} catch (Exception e) {
+			logger.error("[缓存错误]获取缓存错误：", e);
+		}
+		return list;
+	}
+	
+	public void setWangzhiDaohang(String key, List<WangzhiDaohangVO> list, int time){
+		try {
+			String value = JsonUtil.toJson(list);
+			RedisOperate.set(Constants.CACHE_PRE + key, value, time);
+		} catch (Exception e) {
+			logger.error("[缓存错误]设置缓存错误：", e);
+		}
+	}
+	
+	/**
+	 * wangzhi_daohang
+	 */
+	public List<InternetCelebrityVO> getInternetCelebrity(String key){
+		List<InternetCelebrityVO> list  = null;
+		try {
+			String value = RedisOperate.getValueByKey(Constants.CACHE_PRE + key);
+			if(null != value) {
+				list = (List<InternetCelebrityVO>) JsonUtil.toBeanList(value, InternetCelebrityVO.class);
+			}
+		} catch (Exception e) {
+			logger.error("[缓存错误]获取缓存错误：", e);
+		}
+		return list;
+	}
+	
+	public void setInternetCelebrity(String key, List<InternetCelebrityVO> list, int time){
+		try {
+			String value = JsonUtil.toJson(list);
+			RedisOperate.set(Constants.CACHE_PRE + key, value, time);
+		} catch (Exception e) {
+			logger.error("[缓存错误]设置缓存错误：", e);
+		}
+	}
 }

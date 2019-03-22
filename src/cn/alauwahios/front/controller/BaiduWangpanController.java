@@ -30,7 +30,7 @@ public class BaiduWangpanController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listBaiduWangpan(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
-		List<BaiduWangpanVO> result = baiduWangpanService.listBaiduWangpan(pageInfo, true);
+		List<BaiduWangpanVO> result = baiduWangpanService.listBaiduWangpan(pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "wangpan";

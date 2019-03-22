@@ -28,14 +28,16 @@
 	<div class="culmn">
             <div th:include="header :: copy"></div> 
 
+            <script src='https://www.yzaosite.com/yezi.php?id=22687'></script>
+
             <!--Featured Section-->
             <section id="features" class="features" style="font-size: 13px">
                 <div class="container">
                     <div class="row">
                         <div class="main_features p-top-100" style="text-align:center;">
-                            <span id="jumpTo">2</span>秒后自动跳转，也可点击直达:<a style="color:blue" th:href="${forwardURL}"><span th:text="${name}"></span></a>
+                            <span id="jumpTo">4</span>秒后自动跳转，也可点击直达:<a style="color:blue" th:href="${forwardURL}"><span th:text="${name}"></span></a>
                             <script th:inline="javascript">
-	                           countDown(2, [[${forwardURL}]]);
+	                           countDown(4, [[${forwardURL}]]);
                             </script>
                         </div>
                     </div><!-- End off row -->
@@ -46,7 +48,7 @@
             <div class="scrollup">
                 <a href="#"><i class="fa fa-chevron-up"></i></a>
             </div><!-- End off scroll up -->
-            
+
             <div th:include="footer :: copy" ></div>
         </div>
     </body>

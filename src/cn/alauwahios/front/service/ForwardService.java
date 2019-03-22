@@ -23,6 +23,9 @@ public class ForwardService {
 	private InternetCelebrityService internetCelebrityService;
 	
 	@Autowired
+	private WangzhiDaohangService wangzhiDaohangService;
+	
+	@Autowired
 	private FxZiyuanService fxZiyuanService;
 	
 	public boolean saveVisits(int id, String type, String gogogo) {
@@ -43,6 +46,8 @@ public class ForwardService {
 			flag = internetCelebrityService.saveVisits(id);
 		} else if(Constants.ZIYUAN.equals(type)){
 			flag = fxZiyuanService.saveVisits(id);
+		} else if(Constants.WANGZHI_DAOHANG.equals(type)){
+			flag = wangzhiDaohangService.saveVisits(id);
 		}
 		return flag;
 	}

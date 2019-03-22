@@ -15,56 +15,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.alauwahios.front.CodeAndMessage;
-import cn.alauwahios.front.Constants;
-import cn.alauwahios.front.asyn.ParserContentAsyn;
-import cn.alauwahios.front.service.BaiduTieziService;
+import cn.alauwahios.front.service.WangzhiDaohangService;
 import cn.alauwahios.front.util.JsonReUtil;
 import cn.alauwahios.front.validate.ControllerValidate;
-import cn.alauwahios.front.vo.BaiduTieziVO;
 import cn.alauwahios.front.vo.PageInfo;
+import cn.alauwahios.front.vo.WangzhiDaohangVO;
 
-@Controller("baiduTieziController")
-@RequestMapping("/tiezi")
-public class BaiduTieziController {
+@Controller("wangzhiDaohangController")
+@RequestMapping("/daohang")
+public class WangzhiDaohangController {
 	@Autowired
-	private BaiduTieziService baiduTieziService;
-	
-	@Autowired
-	private ParserContentAsyn parserContentAsyn;
+	private WangzhiDaohangService wangzhiDaohangService;
 	
 	/**
-	 * 保存内容
-	 * @param content
+	 * 刚打开
 	 * @param request
 	 * @param response
+	 * @param pageInfo
 	 * @param model
 	 * @return
-	 * @throws IOException
 	 */
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String encodePost(@RequestParam(value = "content", defaultValue = "", required = true) String content,
-			HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-		model.addAttribute("pageInfo", new PageInfo());
-		if ("".equals(content.trim())) {
-			model.addAttribute("error", "请只输入帖子/p/后的9或10位数字。");
-			return "redirect:/tiezi";
-		}
-		
-		//异步解析
-		content = Constants.BAIDU_TIEZI_BASE + content;
-		parserContentAsyn.setAsynQueue(content, 1);
-		
-		model.addAttribute("error", "你的链接正在解析中，请稍后查看；如果一分钟后不成功，可以再次提交！");
-		return "redirect:/tiezi";
-	}
-	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String listBaiduTiezi(HttpServletRequest request,HttpServletResponse response,
+	public String listWangzhiDaohang(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
-		List<BaiduTieziVO> result = baiduTieziService.listBaiduTiezi(pageInfo, false);
+		model.addAttribute("keyword", "");
+		List<WangzhiDaohangVO> result = wangzhiDaohangService.listWangzhiDaohang("", pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
-		return "tiezi";
+		return "daohang";
 	}
 	
 	/**
@@ -78,12 +56,14 @@ public class BaiduTieziController {
 	 */
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public String searchPost(
+			@RequestParam(value = "keyword", defaultValue = "", required = false) String keyword,
 			PageInfo pageInfo,
 			HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-		List<BaiduTieziVO> result = baiduTieziService.listBaiduTiezi(pageInfo, false);
+		model.addAttribute("keyword", keyword);
+		List<WangzhiDaohangVO> result = wangzhiDaohangService.listWangzhiDaohang(keyword, pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
-		return "tiezi";
+		return "daohang";
 	}
 	
 	@RequestMapping(value = "/saveStar", method = RequestMethod.GET)
@@ -93,7 +73,6 @@ public class BaiduTieziController {
 			@RequestParam(value="var",defaultValue="",required = false) String var,
 			Model model) {
 		StringBuffer sb = new StringBuffer();
-		
 		ControllerValidate.useVar(sb, var);
 		
 		if(id < 1) {
@@ -101,7 +80,7 @@ public class BaiduTieziController {
 					CodeAndMessage.PARAMETER_ERROR.getMessage())).toString();
 		}
 		// 点赞
-		boolean flag = baiduTieziService.saveStar(id);
+		boolean flag = wangzhiDaohangService.saveStar(id);
 		if(flag) {
 			 return sb.append(JsonReUtil.getSuccessResponse(CodeAndMessage.STAR_SUCCESS.getCode(),
 					 CodeAndMessage.STAR_SUCCESS.getMessage())).toString();
@@ -112,7 +91,7 @@ public class BaiduTieziController {
 	
 	@RequestMapping(value = "/saveSort", method = RequestMethod.GET)
 	@ResponseBody
-	public String saveVisits(HttpServletRequest request,HttpServletResponse response,
+	public String saveSort(HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(value="id",defaultValue="0",required = false) int id,
 			@RequestParam(value="var",defaultValue="",required = false) String var,
 			Model model) {
@@ -124,7 +103,7 @@ public class BaiduTieziController {
 			return sb.append(JsonReUtil.getFailedResponse(CodeAndMessage.PARAMETER_ERROR.getCode(),
 					CodeAndMessage.PARAMETER_ERROR.getMessage())).toString();
 		}
-		boolean flag = baiduTieziService.saveSort(id);
+		boolean flag = wangzhiDaohangService.saveSort(id);
 		if(flag) {
 			return sb.append(JsonReUtil.getSuccessResponse(CodeAndMessage.SORT_SUCCESS.getCode(),
 					CodeAndMessage.SORT_SUCCESS.getMessage())).toString();
@@ -147,7 +126,7 @@ public class BaiduTieziController {
 			return sb.append(JsonReUtil.getFailedResponse(CodeAndMessage.PARAMETER_ERROR.getCode(),
 					CodeAndMessage.PARAMETER_ERROR.getMessage())).toString();
 		}
-		boolean flag = baiduTieziService.cancelSort(id);
+		boolean flag = wangzhiDaohangService.cancelSort(id);
 		if(flag) {
 			return sb.append(JsonReUtil.getSuccessResponse(CodeAndMessage.SORT_CANCEL_SUCCESS.getCode(),
 					CodeAndMessage.SORT_CANCEL_SUCCESS.getMessage())).toString();
@@ -155,5 +134,4 @@ public class BaiduTieziController {
 		return sb.append(JsonReUtil.getFailedResponse(CodeAndMessage.SORT_CANCEL_FAIL.getCode(),
 				CodeAndMessage.SORT_CANCEL_FAIL.getMessage())).toString();
 	}
-
 }

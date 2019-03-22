@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.alauwahios.front.Constants;
 import cn.alauwahios.front.dao.BaiduTieziDao;
+import cn.alauwahios.front.redis.AlauwahiosRedis;
 import cn.alauwahios.front.vo.BaiduTieziVO;
 import cn.alauwahios.front.vo.PageInfo;
 
@@ -40,9 +42,21 @@ public class BaiduTieziService {
 		return baiduTieziDao.saveBaiduTiezi(vo);
 	}
 	
-	public List<BaiduTieziVO> listBaiduTiezi(PageInfo pageInfo) {
+	public List<BaiduTieziVO> listBaiduTiezi(PageInfo pageInfo, boolean useCache) {
 		// TODO 添加防刷机制
-		return baiduTieziDao.listBaiduTiezi(pageInfo);
+		// 添加缓存
+		List<BaiduTieziVO> list = null;
+		if(useCache){
+			list = AlauwahiosRedis.getInstance().getBaiduTiezi(Constants.CACHE_BAIDUTIEZI_KEY);
+		}
+		if(null == list) {
+			list = baiduTieziDao.listBaiduTiezi(pageInfo);
+			if(null != list){
+			    AlauwahiosRedis.getInstance().setBaiduTiezi(Constants.CACHE_BAIDUTIEZI_KEY, 
+			    		list, Constants.CACHE_BAIDUTIEZI_TIME);
+			}
+		}
+		return list;
 	}
 
 }

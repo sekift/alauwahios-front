@@ -39,6 +39,7 @@ public class Constants {
 	public static final String TIEZI_TIEBA = "tiezi_tieba";
 	public static final String INTERNET_CELEBRITY = "internet_celebrity";
 	public static final String ZIYUAN = "ziyuan";
+	public static final String WANGZHI_DAOHANG = "wangzhi_daohang";
 	
 	// 主域名
 	public static final String BASE_DOMAIN = "http://www.pan00.com";
@@ -76,6 +77,15 @@ public class Constants {
 
 	public static final String CACHE_BAIDUTIEBA_KEY = "baidu_tieba";
 	public static final int CACHE_BAIDUTIEBA_TIME = 5 * 60;
+	
+	public static final String CACHE_BAIDUTIEZI_KEY = "baidu_tiezi";
+	public static final int CACHE_BAIDUTIEZI_TIME = 5 * 60;
+	
+	public static final String CACHE_WANGZHIDAOHANG_KEY = "wangzhi_daohang";
+	public static final int CACHE_WANGZHIDAOHANG_TIME = 3 * 60;
+	//InternetCelebrity
+	public static final String CACHE_INTERNETCELEBRITY_KEY = "internet_celebrity";
+	public static final int CACHE_INTERNETCELEBRITY_TIME = 3 * 60;
 	
 	/*static{
 		if(test){

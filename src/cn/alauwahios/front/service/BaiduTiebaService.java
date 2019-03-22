@@ -41,11 +41,11 @@ public class BaiduTiebaService {
 		return baiduTiebaDao.cancelSort(id);
 	}
 
-	public List<BaiduTiebaVO> listBaiduTieba(PageInfo pageInfo, boolean userCache) {
+	public List<BaiduTiebaVO> listBaiduTieba(PageInfo pageInfo, boolean useCache) {
 		// TODO 添加防刷机制
 		// 添加缓存
 		List<BaiduTiebaVO> list = null;
-		if(userCache){
+		if(useCache){
 			list = AlauwahiosRedis.getInstance().getBaiduTieba(Constants.CACHE_BAIDUTIEBA_KEY);
 		}
 		if(null == list) {
@@ -55,7 +55,7 @@ public class BaiduTiebaService {
 			    		list, Constants.CACHE_BAIDUTIEBA_TIME);
 			}
 		}
-		return baiduTiebaDao.listBaiduTieba(pageInfo);
+		return list;
 	}
 	
 	public int getIdByTiebaKw(String gogogo){

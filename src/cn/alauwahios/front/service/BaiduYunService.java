@@ -41,11 +41,11 @@ public class BaiduYunService {
 		//return baiduYunDao.cancelSort(id);
 	}
 
-	public List<BaiduYunVO> listBaiduYun(PageInfo pageInfo, boolean userCache) {
+	public List<BaiduYunVO> listBaiduYun(PageInfo pageInfo, boolean useCache) {
 		// TODO 添加防刷机制
 		// 添加缓存
 		List<BaiduYunVO> list = null;
-		if(userCache){
+		if(useCache){
 			list = AlauwahiosRedis.getInstance().getBaiduYun(Constants.CACHE_BAIDUYUN_KEY);
 		}
 		if(null == list) {
@@ -79,11 +79,11 @@ public class BaiduYunService {
 		return result;
 	}
 	
-	public List<BaiduYunVO> listBaiduYunMake(PageInfo pageInfo, boolean userCache) {
+	public List<BaiduYunVO> listBaiduYunMake(PageInfo pageInfo, boolean useCache) {
 		// TODO 添加防刷机制
 		// 添加缓存
 		List<BaiduYunVO> list = null;
-		if(userCache){
+		if(useCache){
 			list = AlauwahiosRedis.getInstance().getBaiduYun(Constants.CACHE_BAIDUYUNMAKE_KEY);
 		}
 		if(null == list) {

@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.alauwahios.front.Constants;
 import cn.alauwahios.front.dao.InternetCelebrityDao;
+import cn.alauwahios.front.redis.AlauwahiosRedis;
 import cn.alauwahios.front.vo.InternetCelebrityVO;
 import cn.alauwahios.front.vo.PageInfo;
 
@@ -40,8 +42,20 @@ public class InternetCelebrityService {
 		return internetCelebrityDao.saveInternetCelebrity(vo);
 	}
 	
-	public List<InternetCelebrityVO> listInternetCelebrity(PageInfo pageInfo) {
+	public List<InternetCelebrityVO> listInternetCelebrity(PageInfo pageInfo, boolean useCache) {
 		// TODO 添加防刷机制
-		return internetCelebrityDao.listInternetCelebrity(pageInfo);
+		// 添加缓存
+		List<InternetCelebrityVO> list = null;
+		if(useCache){
+			list = AlauwahiosRedis.getInstance().getInternetCelebrity(Constants.CACHE_INTERNETCELEBRITY_KEY);
+		}
+		if(null == list) {
+			list = internetCelebrityDao.listInternetCelebrity(pageInfo);
+			if(null != list){
+			    AlauwahiosRedis.getInstance().setInternetCelebrity(Constants.CACHE_INTERNETCELEBRITY_KEY, 
+			    		list, Constants.CACHE_INTERNETCELEBRITY_TIME);
+			}
+		}
+		return list;
 	}
 }

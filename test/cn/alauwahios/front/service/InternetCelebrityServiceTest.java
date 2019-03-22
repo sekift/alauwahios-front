@@ -40,6 +40,6 @@ public class InternetCelebrityServiceTest {
 	@Test
 	public void testListBaiduTieba() {
 		PageInfo pageInfo = new PageInfo();
-		System.out.println(internetCelebrityService.listInternetCelebrity(pageInfo));
+		System.out.println(internetCelebrityService.listInternetCelebrity(pageInfo, false));
 	}
 }

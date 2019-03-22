@@ -41,11 +41,11 @@ public class FxZiyuanService {
 		return fxZiyuanDao.cancelSort(id);
 	}
 
-	public List<FxZiyuanVO> listFxZiyuan(String keyword, PageInfo pageInfo, boolean userCache) {
+	public List<FxZiyuanVO> listFxZiyuan(String keyword, PageInfo pageInfo, boolean useCache) {
 		// TODO 添加防刷机制
 		// 添加缓存
 		List<FxZiyuanVO> list = null;
-		if(userCache){
+		if(useCache){
 			list = AlauwahiosRedis.getInstance().getFxZiyuan(Constants.CACHE_FXZIYUAN_KEY);
 		}
 		if(null == list) {
@@ -55,7 +55,7 @@ public class FxZiyuanService {
 			    		list, Constants.CACHE_FXZIYUAN_TIME);
 			}
 		}
-		return fxZiyuanDao.listFxZiyuan(keyword, pageInfo);
+		return list;
 	}
 	
 	public int getIdByFxKw(String gogogo){

@@ -78,7 +78,7 @@ public class InternetCelebrityController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listInternetCelebrity(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
-		List<InternetCelebrityVO> result = internetCelebrityService.listInternetCelebrity(pageInfo);
+		List<InternetCelebrityVO> result = internetCelebrityService.listInternetCelebrity(pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "star";
@@ -97,7 +97,7 @@ public class InternetCelebrityController {
 	public String searchPost(
 			PageInfo pageInfo,
 			HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-		List<InternetCelebrityVO> result = internetCelebrityService.listInternetCelebrity(pageInfo);
+		List<InternetCelebrityVO> result = internetCelebrityService.listInternetCelebrity(pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "star";

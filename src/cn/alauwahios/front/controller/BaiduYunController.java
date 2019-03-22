@@ -30,7 +30,7 @@ public class BaiduYunController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listBaiduYun(HttpServletRequest request,HttpServletResponse response,
 			PageInfo pageInfo, Model model) {
-		List<BaiduYunVO> result = baiduYunService.listBaiduYun(pageInfo, true);
+		List<BaiduYunVO> result = baiduYunService.listBaiduYun(pageInfo, false);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("result", result);
 		return "yun";

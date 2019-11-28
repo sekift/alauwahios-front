@@ -4,8 +4,6 @@ import java.util.Map;
 
 /**
  * xml config实现
- * 
- * @author wudie
  */
 public class XmlConfig implements Config {
 

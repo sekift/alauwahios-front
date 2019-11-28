@@ -17,7 +17,7 @@ public class Main {
 			JedisPool jp1 = redisPool.getPoolByKemataHash("r", key1);
 			Jedis jd1 = jp1.getResource();
 			System.out.println(jd1.setex(key2, 600, "cba21"));
-			System.out.println(jd.get(key2));
+			System.out.println(jd.get("afe"));
 
 			CloseUtil.returnResourceSilently(jp, jd);
 			CloseUtil.returnResourceSilently(jp1, jd1);

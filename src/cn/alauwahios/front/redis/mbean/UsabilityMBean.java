@@ -1,6 +1,3 @@
-/**
- * 
- */
 package cn.alauwahios.front.redis.mbean;
 
 /**

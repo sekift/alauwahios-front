@@ -52,7 +52,7 @@ public class IndexController {
 	private FxZiyuanService fxZiyuanService;
 	
 	//访问IP请求次数限制3秒1次
-	private static final RateLimitService RLS_VISIT_IP = RateLimitService.getInstance("USER_VISIT_INDEX_IP").addLimit(3, 1).addLimit(60, 30);
+	private static final RateLimitService RLS_VISIT_IP = RateLimitService.getInstance("USER_VISIT_INDEX_IP").addLimit(1, 1).addLimit(60, 30);
 
 	/**
 	 * 刚打开
@@ -68,9 +68,10 @@ public class IndexController {
 			Model model) {
 		
 		//访问IP请求次数限制统计
-		if(!RLS_VISIT_IP.check(IPUtil.getUserIP(request))){
+		//暂时去掉 2020-1-7 luyz
+		/*if(!RLS_VISIT_IP.check(IPUtil.getUserIP(request))){
 			return "index";
-		}
+		}*/
 
 		List<BaiduYunVO> make= baiduYunService.listBaiduYunMake(pageInfo, true);
 		model.addAttribute("make", make);
